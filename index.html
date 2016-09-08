@@ -20,19 +20,80 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerpla.</p>
+        <h1>Meetup Event Planner</h1>
 
-        <label for="firstNameInput">
-        <h3>What is your first name?</h3>
-        <input id="firstNameInput">
+        <form action="">
 
+        <label for="nameInput">
+        <h3>What is your name?</h3>
+        <input type="text" id="nameInput">
         </label>
+
+        <label for="emailInput">
+        <h3>What is your email address?</h3>
+        <input type="email" id="emailInput">
+        </label>
+
+        <label for="passwordInput">
+        <h3>Please create a password</h3>
+        <input type="password" id="passwordInput">
+        </label>
+
+        <label for="birthdayInput">
+        <h3>What is your birthday?</h3>
+        <input type="date" id="birthdayInput">
+        </label>
+
+        <label for="employerInput">
+        <h3>Where do you work?</h3>
+        <input type="text" id="employerInput">
+        </label>
+
+        <label for="positionInput">
+        <h3>What is your position there?</h3>
+        <input type="text" id="positionInput">
+        </label>
+
+        <label for="lovejobInput">
+        <h3>On a scale from 1 to 10, how much do you love your job?</h3>
+        <input type="range" value="0" step="1" min="1" max="10" id="lovejobInput">
+        </label>
+
+        <label for="submitInput">
+        <h3>Submit when your are satisfied with your answers.</h3>
+        <input type="submit"  id="submitInput">
+        </label>
+
+        <label for="eventInput">
+        <h3>What do you want to call the event?</h3>
+        <input type="text"  id="eventInput">
+        </label>
+
+        <label for="typeEventInput">
+        <h3>What type of event is it?</h3>
+        <input list="eventType" id="typeEventInput">
+        <datalist id="eventType">
+            <option value="birthday party"></option>
+            <option value="conference"></option>
+            <option value="wedding"></option>
+            <option value="baptism"></option>
+            <option value="bar mitzvah"></option>
+            <option value="public shaming"></option>
+        </datalist>
+        
+        </label>
+
+        </form>
+
+
+
+        
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-        <script>var p=document.querySelector('p'); console.log(p.getBoundingClientRect().width)</script>
+   
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

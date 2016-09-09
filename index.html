@@ -20,7 +20,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <h1>Meetup Event Planner (Test)</h1>
+        <h1>Meetup Event Planner</h1>
 
         <form action="">
 
@@ -59,10 +59,7 @@
         <input type="range" value="0" step="1" min="1" max="10" id="lovejobInput">
         </label>
 
-        <label for="submitInput">
-        <h3>Submit when your are satisfied with your answers.</h3>
-        <input type="submit"  id="submitInput">
-        </label>
+       
 
         <label for="eventInput">
         <h3>What do you want to call the event?</h3>
@@ -95,8 +92,26 @@
 
 
         <label for="endtimeInput">
-        <h3>When will the date end?</h3>
+        <h3>When will the event end?</h3>
         <input type="datetime-local" id="endtimeInput">
+        </label>
+
+        <label for="guestInput">
+        <h3>Who do you want to invite?</h3>
+        <input type="text" id="guestInput">
+        <button>Add</button>
+        </label>
+
+        <label for="locationInput">
+        <h3>Where will the event take place?</h3>
+        <input type="text" id="locationInput" autocomplete="street-address"><br>
+        </label>
+
+
+
+        <label for="submitInput">
+        <h3>Submit when your are satisfied with your answers.</h3>
+        <input type="submit"  id="submitInput">
         </label>
 
         </form>

@@ -1,0 +1,26 @@
+{
+  "name": "udactiyprojectone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rscharfer/myFirstUdacityProject_2.git"
+  },
+  "author": "Ryan Scharfer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rscharfer/myFirstUdacityProject_2/issues"
+  },
+  "homepage": "https://github.com/rscharfer/myFirstUdacityProject_2#readme"
+}

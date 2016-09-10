@@ -1,0 +1,40 @@
+$optionalColor: #646464;
+
+body {
+	margin-left: .5em;
+	margin-right: 5.0em;
+}
+
+h1 {
+  color: blue; }
+
+h5 {
+  display: inline; }
+
+span {
+  font-size: 0.83em;
+  color: $optionalColor; 
+
+}
+
+#lovejobspan{
+
+	color:black;
+	font-weight: bold;
+
+	margin-right: 1em;
+	display: flex;
+	align-items: center;
+
+}
+
+input[type='range']{
+	height:50px;
+}
+
+.table{
+	width: 500px;
+}
+
+
+

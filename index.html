@@ -12,6 +12,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/styles.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -20,55 +21,58 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <h1>Meetup Event Planner</h1>
+        <h1>Meet Up Planner</h1>
+        <br>    
+        <h3>Create an Account</h3>
 
         <form action="">
 
         <label for="nameInput">
-        <h3>What is your name?</h3>
-        <input type="text" id="nameInput">
-        </label>
+        <h5>What is your name?</h5><br>
+        <input type="text" id="nameInput" required>
+        </label><br>
 
         <label for="emailInput">
-        <h3>What is your email address?</h3>
-        <input type="email" id="emailInput">
-        </label>
+        <br><h5>What is your email address?</h5><br>
+        <input type="email" id="emailInput" required>
+        </label><br>
 
         <label for="passwordInput">
-        <h3>Please create a password</h3>
-        <input type="password" id="passwordInput">
-        </label>
+        <br><h5>Please create a password</h5><br>
+        <input type="password" id="passwordInput" required>
+        </label><br>
 
         <label for="birthdayInput">
-        <h3>What is your birthday?</h3>
+        <br><h5>What is your birthday?</h5><span> (optional)</span><br>
         <input type="date" id="birthdayInput">
-        </label>
+        </label><br>
 
         <label for="employerInput">
-        <h3>Where do you work?</h3>
+        <br><h5>Where do you work?</h5><span> (optional)</span><br>
         <input type="text" id="employerInput">
-        </label>
+        </label><br>
 
         <label for="positionInput">
-        <h3>What is your position there?</h3>
+        <br><h5>What is your position there?</h5><span> (optional)</span><br>
         <input type="text" id="positionInput">
-        </label>
+        </label><br>
 
         <label for="lovejobInput">
-        <h3>On a scale from 1 to 10, how much do you love your job?</h3>
-        <input type="range" value="0" step="1" min="1" max="10" id="lovejobInput">
-        </label>
+        <br><h5>On a scale from 1 to 10, how much do you love your job?</h5><span> (optional)</span><br>
+        <span id='lovejobspan'>Hate it!</span><input type="range" value="0" step="1" min="1" max="10" id="lovejobInput">
+        </label><br>
 
-       
+       <br><br>
+        <h3>Create an Event</h3>
 
         <label for="eventInput">
-        <h3>What do you want to call the event?</h3>
-        <input type="text"  id="eventInput">
-        </label>
+        <h5>What do you want to call the event?</h5><br>
+        <input type="text"  id="eventInput" required>
+        </label><br>
 
         <label for="typeEventInput">
-        <h3>What type of event is it?</h3>
-        <input list="eventType" id="typeEventInput">
+        <br><h5>What type of event is it?</h5><br>
+        <input list="eventType" id="typeEventInput" required>
         <datalist id="eventType">
             <option value="birthday party"></option>
             <option value="conference"></option>
@@ -78,43 +82,88 @@
             <option value="public shaming"></option>
         </datalist>
         
-        </label>
+        </label><br>
 
         <label for="hostInput">
-        <h3>Who is the host of the event?</h3>
-        <input type="text" id="hostInput">
-        </label>
+        <br><h5>Who is the host of the event?</h5><br>
+        <input type="text" id="hostInput" required>
+        </label><br>
 
         <label for="starttimeInput">
-        <h3>When will the event start?</h3>
-        <input type="datetime-local" id="starttimeInput">
-        </label>
+        <br><h5>When will the event start?</h5><br>
+        <input type="datetime-local" id="starttimeInput" required>
+        </label><br>
 
 
         <label for="endtimeInput">
-        <h3>When will the event end?</h3>
-        <input type="datetime-local" id="endtimeInput">
-        </label>
+        <br><h5>When will the event end?</h5><br>
+        <input type="datetime-local" id="endtimeInput" required>
+        </label><br>
 
         <label for="guestInput">
-        <h3>Who do you want to invite?</h3>
-        <input type="text" id="guestInput">
+        <br><h5>Who do you want to invite?</h5><br>
+        <input type="text" id="guestInput" required>
         <button>Add</button>
-        </label>
+        </label><br>
 
         <label for="locationInput">
-        <h3>Where will the event take place?</h3>
-        <input type="text" id="locationInput" autocomplete="street-address"><br>
-        </label>
+        <br><h5>Where will the event take place?</h5><br>
+        <input type="text" id="locationInput" autocomplete="street-address" required><br>
+        </label><br>
 
 
 
         <label for="submitInput">
-        <h3>Submit when your are satisfied with your answers.</h3>
+        <br><h5>Submit when your are satisfied with your answers.</h5><br>
         <input type="submit"  id="submitInput">
-        </label>
+        </label><br>
 
         </form>
+
+       <table>
+           <tr>
+               <td>Wedding!</td>
+           </tr>
+           <tr>
+               <td>Ryan and Franzi's Wedding</td>
+           </tr>
+           <tr>
+               <td>Host:</td>
+           </tr>
+           <tr>
+               <td>Ryan Scharfer</td>
+           </tr>
+           <tr>
+               <td>Date</td>
+           </tr>
+           <tr>
+               <td>January 17, 2019</td>
+           </tr>
+           <tr>
+               <td>Time</td>
+           </tr>
+           <tr>
+               <td>16:00-20:00</td>
+           </tr>
+           <tr>
+               <td>Invited</td>
+           </tr>
+           <tr>
+               <td><ul>
+                   <li>Ryan Scharfer</li>
+                   <li>Tali Faris</li>
+                   <li>Tim Ferriss</li>
+                   <li>Franzi Struch</li>
+               </ul></td>
+           </tr>
+           <tr><td>Location</td></tr>
+           <tr><td>Lerchenfeld 9</td></tr>
+           <tr><td>Message To Guests</td></tr>
+           <tr><td>Bring your own booze!</td></tr>
+         
+       </table>
+
+
 
 
 

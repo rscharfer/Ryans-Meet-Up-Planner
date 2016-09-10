@@ -5,26 +5,43 @@
 
 var gulp = require('gulp');
 var browser = require('browser-sync').create();
+var sass = require('gulp-sass');
 
 
-gulp.task('default',function(){
 
-	console.log('Hello!');
+gulp.task('watch',['startBrowser'],function(){
+
+	
+
+	gulp.watch('./index.html',['browserUpdate']);
+
+	gulp.watch('./sass/**/*.scss', ['styles','browserUpdate']);
 });
 
 
-gulp.task('watch',function(){
+gulp.task('styles',function(){
+	gulp.src('./sass/**/*.scss')
+	.pipe(sass().on('error',sass.logError))
+	.pipe(gulp.dest('./css'));
+});
+
+
+gulp.task('browserUpdate',function(){
+
+	browser.reload();
+
+});
+
+gulp.task('startBrowser',function(){
 
 	browser.init({
-		server: './',
+		server:'./',
 		debug:true
 	});
-
-	gulp.watch('./index.html',function(){
-
-		browser.reload();
-	});
 });
+
+
+
 
 
 

@@ -32,9 +32,12 @@ input[type='range']{
 	height:50px;
 }
 
-.table{
-	width: 500px;
+.row.titleRow {
+	background-color: lightgray;
+	font-size:1.25em;
 }
 
-
+#eventTitleRow {
+	font-size:2em;
+}
 

@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -89,15 +91,15 @@
         <input type="text" id="hostInput" required>
         </label><br>
 
-        <label for="starttimeInput">
+        <label for="startTimeInput">
         <br><h5>When will the event start?</h5><br>
-        <input type="datetime-local" id="starttimeInput" required>
+        <input type="datetime-local" id="startTimeInput" required>
         </label><br>
 
 
-        <label for="endtimeInput">
+        <label for="endTimeInput">
         <br><h5>When will the event end?</h5><br>
-        <input type="datetime-local" id="endtimeInput" required>
+        <input type="datetime-local" id="endTimeInput" required>
         </label><br>
 
         <label for="guestInput">
@@ -115,53 +117,59 @@
 
         <label for="submitInput">
         <br><h5>Submit when your are satisfied with your answers.</h5><br>
-        <input type="submit"  id="submitInput">
+        <input type="button"  value="Add Event">
         </label><br>
 
         </form>
 
-       <table>
-           <tr>
-               <td>Wedding!</td>
-           </tr>
-           <tr>
-               <td>Ryan and Franzi's Wedding</td>
-           </tr>
-           <tr>
-               <td>Host:</td>
-           </tr>
-           <tr>
-               <td>Ryan Scharfer</td>
-           </tr>
-           <tr>
-               <td>Date</td>
-           </tr>
-           <tr>
-               <td>January 17, 2019</td>
-           </tr>
-           <tr>
-               <td>Time</td>
-           </tr>
-           <tr>
-               <td>16:00-20:00</td>
-           </tr>
-           <tr>
-               <td>Invited</td>
-           </tr>
-           <tr>
-               <td><ul>
-                   <li>Ryan Scharfer</li>
-                   <li>Tali Faris</li>
-                   <li>Tim Ferriss</li>
-                   <li>Franzi Struch</li>
-               </ul></td>
-           </tr>
-           <tr><td>Location</td></tr>
-           <tr><td>Lerchenfeld 9</td></tr>
-           <tr><td>Message To Guests</td></tr>
-           <tr><td>Bring your own booze!</td></tr>
-         
-       </table>
+
+        <div class="container">
+
+        <div class="row titleRow" id="eventTitleRow">
+             <div class="col-xs-12">Wedding</div>
+         </div>
+         <div class="row bodyRow" id="eventBodyRow">
+             <div class="col-xs-12">Ryan and Franzi's Wedding</div>
+         </div>
+         <div class="row titleRow">
+             <div class="col-xs-12">Host</div>
+         </div>
+         <div class="row bodyRow">
+             <div class="col-xs-12">Ryan's Parents</div>
+         </div>
+         <div class="row titleRow">
+             <div class="col-xs-12">Date</div>
+         </div>
+         <div class="row bodyRow">
+             <div class="col-xs-12">Sept. 12 2016</div>
+         </div>
+         <div class="row titleRow">
+             <div class="col-xs-12">Time</div>
+         </div>
+         <div class="row bodyRow">
+             <div class="col-xs-12">16:00 - 22:00</div>
+         </div>
+         <div class="row titleRow">
+             <div class="col-xs-12">Location</div>
+         </div>
+         <div class="row bodyRow">
+             <div class="col-xs-12">Lerchenfeld 9</div>
+         </div>
+         <div class="row titleRow">
+             <div class="col-xs-12">Invited</div>
+         </div>
+         <div class="row bodyRow">
+             <div class="col-xs-12"><ul>
+                 <li>Tali Faris</li>
+                 <li>Tim Ferriss</li>
+                 <li>Ryan Scharfer</li>
+                 <li>Franzi Struch</li>
+             </ul></div>
+         </div> 
+      
+        </div>
+
+       
 
 
 

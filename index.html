@@ -13,9 +13,12 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -31,32 +34,37 @@
 
         <label for="nameInput">
         <h5>What is your name?</h5><br>
-        <input type="text" id="nameInput" required>
+        <input type="text" id="nameInput" placeholder="Hans Down" required>
         </label><br>
 
         <label for="emailInput">
         <br><h5>What is your email address?</h5><br>
-        <input type="email" id="emailInput" required>
+        <input type="email" id="emailInput" placeholder="hansdown@gmail.com" required>
         </label><br>
 
         <label for="passwordInput">
         <br><h5>Please create a password</h5><br>
-        <input type="password" id="passwordInput" required>
+        <input type="password" id="passwordInput" placeholder="**********" required><span id="passwordTip1"></span>
+        </label><br>
+
+        <label for="passwordConfirmationInput">
+        <br><h5>Please type the password again</h5><br>
+        <input type="password" id="passwordConfirmationInput" placeholder="**********" required><span id="passwordTip2"></span>
         </label><br>
 
         <label for="birthdayInput">
-        <br><h5>What is your birthday?</h5><span> (optional)</span><br>
+        <br><h5>On what date were you born?</h5><span> (optional)</span><br>
         <input type="date" id="birthdayInput">
         </label><br>
 
         <label for="employerInput">
         <br><h5>Where do you work?</h5><span> (optional)</span><br>
-        <input type="text" id="employerInput">
+        <input type="text" id="employerInput" placeholder="ABC Tools">
         </label><br>
 
         <label for="positionInput">
         <br><h5>What is your position there?</h5><span> (optional)</span><br>
-        <input type="text" id="positionInput">
+        <input type="text" id="positionInput" placeholder="Executive Sales">
         </label><br>
 
         <label for="lovejobInput">
@@ -64,17 +72,25 @@
         <span id='lovejobspan'>Hate it!</span><input type="range" value="0" step="1" min="1" max="10" id="lovejobInput">
         </label><br>
 
+
+        <button type="submit">Create Account</button>
+
+
+        </form>
+
+        <form>
+
        <br><br>
         <h3>Create an Event</h3>
 
         <label for="eventInput">
         <h5>What do you want to call the event?</h5><br>
-        <input type="text"  id="eventInput" required>
+        <input type="text"  id="eventInput" placeholder="Mary and Ben's Wedding" required>
         </label><br>
 
         <label for="typeEventInput">
         <br><h5>What type of event is it?</h5><br>
-        <input list="eventType" id="typeEventInput" required>
+        <input list="eventType" id="typeEventInput" placeholder="Wedding" required>
         <datalist id="eventType">
             <option value="birthday party"></option>
             <option value="conference"></option>
@@ -83,12 +99,11 @@
             <option value="bar mitzvah"></option>
             <option value="public shaming"></option>
         </datalist>
-        
         </label><br>
 
         <label for="hostInput">
         <br><h5>Who is the host of the event?</h5><br>
-        <input type="text" id="hostInput" required>
+        <input type="text" id="hostInput" placeholder="Mary's Dad" required>
         </label><br>
 
         <label for="startTimeInput">
@@ -104,20 +119,27 @@
 
         <label for="guestInput">
         <br><h5>Who do you want to invite?</h5><br>
-        <input type="text" id="guestInput" required>
-        <button>Add</button>
+        <input type="text" id="guestInput" placeholder="Aunt Betty" required>
+        <br><span>Current Guest List: </span>
+        <ul></ul>
+        <button type="button" id="addGuest">Add Guest</button>
         </label><br>
 
         <label for="locationInput">
         <br><h5>Where will the event take place?</h5><br>
-        <input type="text" id="locationInput" autocomplete="street-address" required><br>
-        </label><br>
+        <input type="text" placeholder="123 Place St. New York, New York 12343" id="locationInput" autocomplete="street-address" required><br>
+               </label><br>
+
+        <label for="messageInput">
+        <br><h5>Do you have message for the quests?</h5><br>
+        <textarea placeholder="Don't forget to bring the watercoolers!" id="messageInput" ></textarea><br>
+               </label><br>
 
 
 
-        <label for="submitInput">
-        <br><h5>Submit when your are satisfied with your answers.</h5><br>
-        <input type="button"  value="Add Event">
+        <label for="addEvent">
+        
+        <button id="addEvent" type="button">Add Event</button>
         </label><br>
 
         </form>
@@ -126,40 +148,40 @@
         <div class="container">
 
         <div class="row titleRow" id="eventTitleRow">
-             <div class="col-xs-12">Wedding</div>
+             <div class="col-xs-12" id="gridEventType">Wedding</div>
          </div>
          <div class="row bodyRow" id="eventBodyRow">
-             <div class="col-xs-12">Ryan and Franzi's Wedding</div>
+             <div class="col-xs-12" id="gridEventName">Ryan and Franzi's Wedding</div>
          </div>
          <div class="row titleRow">
              <div class="col-xs-12">Host</div>
          </div>
          <div class="row bodyRow">
-             <div class="col-xs-12">Ryan's Parents</div>
+             <div class="col-xs-12" id="gridEventHost">Ryan's Parents</div>
          </div>
          <div class="row titleRow">
              <div class="col-xs-12">Date</div>
          </div>
          <div class="row bodyRow">
-             <div class="col-xs-12">Sept. 12 2016</div>
+             <div class="col-xs-12" id="gridEventDate">Sept. 12 2016</div>
          </div>
          <div class="row titleRow">
              <div class="col-xs-12">Time</div>
          </div>
          <div class="row bodyRow">
-             <div class="col-xs-12">16:00 - 22:00</div>
+             <div class="col-xs-12" id="gridEventTime">16:00 - 22:00</div>
          </div>
          <div class="row titleRow">
-             <div class="col-xs-12">Location</div>
+             <div class="col-xs-12" >Location</div>
          </div>
          <div class="row bodyRow">
-             <div class="col-xs-12">Lerchenfeld 9</div>
+             <div class="col-xs-12" id="gridEventLocation">Lerchenfeld 9</div>
          </div>
          <div class="row titleRow">
              <div class="col-xs-12">Invited</div>
          </div>
          <div class="row bodyRow">
-             <div class="col-xs-12"><ul>
+             <div class="col-xs-12"><ul id="gridEventGuests">
                  <li>Tali Faris</li>
                  <li>Tim Ferriss</li>
                  <li>Ryan Scharfer</li>
@@ -192,5 +214,6 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+        <script src="./app.js"></script>
     </body>
 </html>

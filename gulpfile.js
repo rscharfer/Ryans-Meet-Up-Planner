@@ -15,6 +15,9 @@ gulp.task('watch',['startBrowser'],function(){
 
 	gulp.watch('./index.html',['browserUpdate']);
 
+	gulp.watch('./app.js',['browserUpdate']);
+
+
 	gulp.watch('./sass/**/*.scss', ['styles','browserUpdate']);
 });
 

@@ -49,6 +49,7 @@ confirmedPassword.addEventListener('blur',samePassword);
 
 
 
+var guestListArray = [];
 
 function addGuest(){
 	let formGuestLabel = document.querySelector('label[for="guestInput"]');
@@ -58,6 +59,7 @@ function addGuest(){
 	newItem.innerHTML=guestName;
 	guestList.appendChild(newItem);
 	formGuestLabel.querySelector('input').value='';
+	guestListArray.push(guestName);
 
 
 }
@@ -150,11 +152,26 @@ function addEvent(){
 	let host = hostInput.value;
 	let startTime = startTimeInput.value;
 	let endTime = endTimeInput.value;
-	let guests = guestInput.value;
+	let guests = guestListArray;
 	let location = locationInput.value;
 	let message = messageInput.value;
 	let event = new Event(name,type,host,startTime,endTime,guests,location,message);
-	console.log(event)
+	localStorage.setItem(name,JSON.stringify(event));
+	
+	eventInput.value = '';
+	typeEventInput.value = '';
+	hostInput.value = '';
+	startTimeInput.value = '';
+	endTimeInput.value = '';
+	guestListArray = '';
+	locationInput.value = '';
+	messageInput.value = '';
+
+	let guestList = document.querySelector('label[for="guestInput"] ul');
+	guestList.innerHTML='';
+	guestListArray=[];
+
+
 }
 
 

@@ -1,14 +1,23 @@
+/* eslint-disable no-console */
+
 var eventInput = document.querySelector('#eventInput');
 var typeEventInput = document.querySelector('#typeEventInput');
 var hostInput = document.querySelector('#hostInput');
 var startTimeInput = document.querySelector('#startTimeInput');
 var endTimeInput = document.querySelector('#endTimeInput');
-var guestInput = document.querySelector('#guestInput');
+var guestInput = document.querySelector('#guestInput');  // eslint-disable-line no-unused-vars
 var locationInput = document.querySelector('#locationInput');
 var passwordInput = document.querySelector('#passwordInput');
 var confirmedPassword= document.querySelector('#passwordConfirmationInput');
 var messageInput= document.querySelector('#messageInput');
 var addEventButton = document.querySelector('#addEvent');
+
+
+var emailInput = document.querySelector('#emailInput');
+
+emailInput.addEventListener('input',function(){
+	console.log(this.checkValidity());
+}, false);
 
 
 var events = [];
@@ -112,6 +121,7 @@ function checkPassword(){
 
 	let passwordTip = document.querySelector('#passwordTip1');
 	passwordTip.innerHTML = message;
+	console.log(this.checkValidity());
 }
 
 function samePassword(){

@@ -1,23 +1,122 @@
 /* eslint-disable no-console */
 
+
+
+// Inputs 
+
+
+var nameInput = document.querySelector('#nameInput');
+var emailInput = document.querySelector('#emailInput');
+var passwordInput = document.querySelector('#passwordInput');
+var confirmedPassword= document.querySelector('#passwordConfirmationInput');
+var birthdayInput= document.querySelector('#birthdayInput');
+var employerInput = document.querySelector('#employerInput');
+var positionInput = document.querySelector('#positionInput');
+var loveJobInput = document.querySelector('#loveJobInput');
+
+
+
+
 var eventInput = document.querySelector('#eventInput');
 var typeEventInput = document.querySelector('#typeEventInput');
 var hostInput = document.querySelector('#hostInput');
 var startTimeInput = document.querySelector('#startTimeInput');
 var endTimeInput = document.querySelector('#endTimeInput');
-var guestInput = document.querySelector('#guestInput');  // eslint-disable-line no-unused-vars
+var guestInput = document.querySelector('#guestInput');
 var locationInput = document.querySelector('#locationInput');
-var passwordInput = document.querySelector('#passwordInput');
-var confirmedPassword= document.querySelector('#passwordConfirmationInput');
 var messageInput= document.querySelector('#messageInput');
-var addEventButton = document.querySelector('#addEvent');
 
 
-var emailInput = document.querySelector('#emailInput');
+// Buttons
 
-emailInput.addEventListener('input',function(){
-	console.log(this.checkValidity());
-}, false);
+var createEventButton = document.querySelector('#createEventButton');
+var submitEventButton = document.querySelector('#addEvent');
+var createAccountButton = document.querySelector('#createAccountButton');
+var submitAccountButton = document.querySelector('#submitNewAccount');
+var addGuestButton = document.querySelector('#addGuest');
+
+// Displays
+
+var greeting = document.querySelector('#greeting');
+var createAccountForm = document.querySelector('#createAccountForm');
+var createEventForm = document.querySelector('#createEventForm');
+var displayedEvents = document.querySelector('#displayedEvents');
+
+
+
+// Event Listeners 
+
+
+
+
+createAccountButton.addEventListener('click',function(){
+
+	createAccountForm.style.display='block';
+	greeting.style.display='none';
+},false);
+
+
+submitAccountButton.addEventListener('click',function(e){
+
+	e.preventDefault();
+	let name = nameInput.value;
+	let email = emailInput.value;
+	let password = passwordInput.value;
+	let birthday = birthdayInput.value;
+	let employer = employerInput.value;
+	let position = positionInput.value;
+	let loveJob = loveJobInput.value;
+	let newAccount = new Account(name,email,password,birthday,employer,position,loveJob);
+	localStorage.setItem(name,JSON.stringify(newAccount));
+	console.dir(JSON.parse(localStorage.getItem(name)) instanceof Account);
+
+
+},false);
+
+
+
+
+
+
+createEventButton.addEventListener('click',function(){
+
+	createEventForm.style.display='block';
+	greeting.style.display='none';
+},false);
+
+
+
+addGuestButton.addEventListener('click',addGuest);
+passwordInput.addEventListener('input',checkPassword);
+confirmedPassword.addEventListener('blur',samePassword);
+submitEventButton.addEventListener('click',addEvent);
+
+
+
+
+
+
+function checkforEvents(){
+
+	for (let key in localStorage){
+		let value = localStorage.getItem(key);
+		value = JSON.parse(value);
+		if (value instanceof Event){
+			createEventDisplay(value);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 var events = [];
@@ -45,16 +144,37 @@ class Event {
 
 
 
-addEventButton.addEventListener('click',addEvent);
+
+class Account {
+
+
+	
+
+	constructor(name,email,password,birthdate,work,position,workLike){
+
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.birthdate = birthdate;
+		this.work=work;
+		this.position=position;
+		this.workLike=workLike;
+	
+	}
+
+
+}
 
 
 
 
-var addGuestButton = document.querySelector('#addGuest');
 
-addGuestButton.addEventListener('click',addGuest);
-passwordInput.addEventListener('input',checkPassword);
-confirmedPassword.addEventListener('blur',samePassword);
+
+
+
+
+
+
 
 
 

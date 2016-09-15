@@ -27,10 +27,14 @@
 
         <!-- Add your site or application content here -->
         <h1>Meet Up Planner</h1>
-        <br>    
-        <h3>Create an Account</h3>
+        <br>
+        <div id="greeting">
+        <h3 id="whatToDo">Hello! Would you like to create an account to save your events?</h3>
+        <button id="createAccountButton">Create an account!</button>&nbsp;<button id="createEventButton">No, I would just like to create an event : )</button>    
+        </div>
 
-        <form action="">
+        <form action="" id="createAccountForm" style="display:none">
+        <h3>Create an Account</h3>
 
         <label for="nameInput">
         <h5>What is your name?</h5><br>
@@ -67,18 +71,18 @@
         <input type="text" id="positionInput" placeholder="Executive Sales">
         </label><br>
 
-        <label for="lovejobInput">
+        <label for="loveJobInput">
         <br><h5>On a scale from 1 to 10, how much do you love your job?</h5><span> (optional)</span><br>
-        <span id='lovejobspan'>Hate it!</span><input type="range" value="0" step="1" min="1" max="10" id="lovejobInput">
+        <span id='lovejobspan'>Hate it!</span><input type="range" value="0" step="1" min="1" max="10" id="loveJobInput">
         </label><br>
 
 
-        <button type="submit">Create Account</button>
+        <button id="submitNewAccount" type="submit">Create Account</button>
 
 
         </form>
 
-        <form>
+        <form id="createEventForm" style="display:none">
 
        <br><br>
         <h3>Create an Event</h3>
@@ -145,7 +149,7 @@
         </form>
 
 
-        <div class="container">
+        <div id="displayedEvents" class="container" style="display:none">
 
         <div class="row titleRow" id="eventTitleRow">
              <div class="col-xs-12" id="gridEventType">Wedding</div>

@@ -129,6 +129,7 @@ class Event {
 
 	constructor(name,eventType,host,startDateTime,endDateTime,guestList,location,optMessage=''){
 
+		this.eventOrAccount = 'Event';
 		this.name = name;
 		this.eventType = eventType;
 		this.host = host;
@@ -152,6 +153,7 @@ class Account {
 
 	constructor(name,email,password,birthdate,work,position,workLike){
 
+		this.eventOrAccount = 'Account';
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -287,6 +289,7 @@ function addEvent(){
 	let message = messageInput.value;
 	let event = new Event(name,type,host,startTime,endTime,guests,location,message);
 	localStorage.setItem(name,JSON.stringify(event));
+	createEventDisplay(event);
 	
 	eventInput.value = '';
 	typeEventInput.value = '';
@@ -300,6 +303,24 @@ function addEvent(){
 	let guestList = document.querySelector('label[for="guestInput"] ul');
 	guestList.innerHTML='';
 	guestListArray=[];
+
+
+}
+
+
+function createEventDisplay(){
+
+	let eventContainer = document.getElementById('eventContainer');
+	let event1 = document.getElementById('event1');
+	let newEvent = event1.cloneNode(true);
+	let numberOfEvents = document.getElementsByClassName('event').length;
+	newEvent.id='event'+ ++numberOfEvents;
+	newEvent.style.display='block';
+
+	eventContainer.appendChild(newEvent);
+	
+
+
 
 
 }

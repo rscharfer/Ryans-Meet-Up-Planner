@@ -1,9 +1,7 @@
 body {
   margin-left: .5em;
-  margin-right: 5.0em; }
-
-h1 {
-  color: blue; }
+  margin-right: 5.0em;
+  font-family: 'Open Sans'; }
 
 h5 {
   display: inline; }
@@ -31,3 +29,41 @@ input {
 
 #eventTitleRow {
   font-size: 2em; }
+
+header {
+  position: fixed;
+  top: 0px;
+  min-width: 100%;
+  background-color: blue;
+  padding: 16px; }
+
+form {
+  margin: 16px auto;
+  max-width: 400px;
+  padding: 16px;
+  border-radius: 2px;
+  /*  box-shadow: 3px 1.5px 1px #888888;*/
+  border: 1px solid #ddd; }
+
+.main {
+  padding-top: 60px; }
+
+header > span {
+  color: white;
+  font-size: 1.5em; }
+
+nav a {
+  color: white;
+  text-align: center;
+  line-height: 30px; }
+
+header {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between; }
+
+nav {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  /*	padding-right:10px;*/ }

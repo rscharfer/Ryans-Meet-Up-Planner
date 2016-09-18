@@ -1,6 +1,6 @@
 body {
-  margin-left: .5em;
-  margin-right: 5.0em;
+  /*	margin-left: .5em;
+	margin-right: 5.0em;*/
   font-family: 'Open Sans'; }
 
 h5 {
@@ -43,7 +43,8 @@ form {
   border: 1px solid #ddd; }
 
 .main {
-  padding-top: 60px; }
+  padding-top: 60px;
+  /*  width: 100%;*/ }
 
 header > span {
   color: white;
@@ -52,7 +53,12 @@ header > span {
 nav a {
   color: white;
   text-align: center;
-  line-height: 30px; }
+  line-height: 30px;
+  cursor: pointer; }
+
+nav a:hover {
+  color: white;
+  text-decoration: none; }
 
 header {
   flex-direction: row;
@@ -63,4 +69,87 @@ nav {
   flex-direction: row;
   display: flex;
   justify-content: space-between;
-  /*	padding-right:10px;*/ }
+  padding-right: 10px;
+  margin-right: 4%;
+  font-size: .8em; }
+
+figure {
+  width: 90%;
+  margin: 0px auto; }
+
+figure img {
+  width: 100%; }
+
+#logInLink {
+  margin-right: 20px; }
+
+#loveJobInput {
+  width: 70%; }
+
+#loveJobContainer {
+  display: flex;
+  flex-direction: row; }
+
+#loveJobContainer span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px; }
+
+#loveJobContainer span b {
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 5px;
+  width: 28px;
+  text-align: center; }
+
+.eventContainer {
+  height: 400px;
+  width: 60%;
+  perspective: 2000px;
+  /*	display:flex;
+	flex-direction: row;
+	justify-content: space-between;*/
+  margin: 0 auto; }
+
+.cardContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s; }
+
+.card {
+  /*	height:200px;
+	min-width:200px;
+	width:30%;*/
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  background-color: lightblue; }
+
+.card.eventDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; }
+
+.card.typeOfEvent {
+  border: 1px solid black;
+  text-align: center;
+  /*    display: flex;
+    flex-direction: column;
+    justify-content: center;*/
+  transform: rotateY(180deg); }
+
+.cardContainer.flipped {
+  transform: rotateY(180deg); }
+
+.card.eventDetails .name {
+  font-size: 1em;
+  text-decoration: underline;
+  color: black; }

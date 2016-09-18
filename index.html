@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 <!--     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --> -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -27,15 +27,20 @@
     <!-- Add your site or application content here -->
     <header>
         <span>Event Planner</span>
-        <nav><a href="">Login</a>&nbsp;&nbsp;&nbsp;<a href="">Register</a></nav>
+        <nav><a id="logInLink">Login</a><a id="createAccountLink">Register</a></nav>
     </header>
     <div class="main">
-        <div id="greeting">
+ <!--        <div id="greeting">
             <h3 id="whatToDo">Create an event?</h3>
             <button id="createEventButton">Yes, please!</button>
             <button id="createAccountButton">Not yet</button>
             
-        </div>
+        </div> -->
+
+        <figure>
+            <img src="img/wedding.jpg" alt="A newly married couple walking through the woods">
+            <figcaption>Create your own event today!</figcaption>
+        </figure>
         <form action="" id="createAccountForm" style="display:none">
             <h3>Create an Account</h3>
             <label for="nameInput">
@@ -55,14 +60,14 @@
                 <br>
                 <h5>Please create a password</h5>
                 <br>
-                <input type="password" id="passwordInput" placeholder="**********" required><span id="passwordTip1"></span>
+                <input type="password" id="passwordInput" placeholder="**********" required><br><span id="passwordTip1"></span>
             </label>
             <br>
             <label for="passwordConfirmationInput">
                 <br>
                 <h5>Please type the password again</h5>
                 <br>
-                <input type="password" id="passwordConfirmationInput" placeholder="**********" required><span id="passwordTip2"></span>
+                <input type="password" id="passwordConfirmationInput" placeholder="**********" required><br><span id="passwordTip2"></span>
             </label>
             <br>
             <label for="birthdayInput">
@@ -88,10 +93,11 @@
             <br>
             <label for="loveJobInput">
                 <br>
-                <h5>On a scale from 1 to 10, how much do you love your job?</h5><span> (optional)</span>
-                <br>
-                <span id='lovejobspan'>Hate it!</span>
-                <input type="range" value="0" step="1" min="1" max="10" id="loveJobInput">
+                <h5>On a scale from 1 to 10, how much do you love your job?</h5> <span>(optional)</span>
+                
+                <div id="loveJobContainer">
+                <input type="range" value="5" step="1" min="1" max="10" id="loveJobInput"><span><b id="output">5</b></span>
+                </div>
             </label>
             <br>
             <button id="submitNewAccount" type="submit">Create Account</button>
@@ -173,8 +179,27 @@
             <br>
         </form>
     </div>
-    <div id="eventContainer">
-        <div class="container event" id="event1" style="display:none">
+    <div id="eventContainer" style="display:none">
+    <h3 style="text-align:center">Hello, Ryan!  Here are your events.</h3>
+
+    <div class="eventContainer">
+
+        <div class="cardContainer">
+        
+        <div class="card typeOfEvent"><h2>Wedding</h2></div>
+        <div class="card eventDetails">
+            <span class="name">Mary's Wedding</span>
+            <span class="host">Host: Tom Lerch</span><br>
+            <span class='startTime'>Start: August 5, 2015 5:30pm</span>
+            <span class="endTime">End: August 5, 2015 7:30pm</span>
+            <span class="location">Location: Lerchenfeld 9 22081 Hamburg, Germany</span>
+            <span class="guests"><ul><li>Ryan Scharfer</li><li>Tali Faris</li></ul></span>
+            <span class="message">Bring Beer!</span>
+        </div>
+        </div>
+
+    </div>
+  <!--       <div class="container event" id="event1">
             <div class="row titleRow eventTitleRow">
                 <div class="col-xs-12" class="gridEventType">Wedding</div>
             </div>
@@ -218,7 +243,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>

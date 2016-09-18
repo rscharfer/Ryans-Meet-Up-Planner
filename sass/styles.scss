@@ -1,98 +1,191 @@
 $optionalColor: #646464;
-
 body {
-	margin-left: .5em;
-	margin-right: 5.0em;
-	font-family:'Open Sans';
+    /*	margin-left: .5em;
+	margin-right: 5.0em;*/
+    font-family: 'Open Sans';
 }
-
-
 
 h5 {
-  display: inline; }
+    display: inline;
+}
 
 span {
-  font-size: 0.83em;
-  color: $optionalColor; 
-
+    font-size: 0.83em;
+    color: $optionalColor;
 }
 
-#lovejobspan{
-
-	color:black;
-	font-weight: bold;
-
-	margin-right: 1em;
-	display: flex;
-	align-items: center;
-
+#lovejobspan {
+    color: black;
+    font-weight: bold;
+    margin-right: 1em;
+    display: flex;
+    align-items: center;
 }
 
-input[type='range']{
-	height:50px;
+input[type='range'] {
+    height: 50px;
 }
 
-input{
-	width:300px;
+input {
+    width: 300px;
 }
 
 .row.titleRow {
-	background-color: lightgray;
-	font-size:1.25em;
+    background-color: lightgray;
+    font-size: 1.25em;
 }
 
-
-
 header {
-
-  position:fixed;
-  top:0px;
-  min-width:100%;
-  background-color: blue;
-  padding:16px;
+    position: fixed;
+    top: 0px;
+    min-width: 100%;
+    background-color: blue;
+    padding: 16px;
 }
 
 form {
-
-  margin: 16px auto;
-  max-width: 400px;
-  padding: 16px;
-  border-radius: 2px;
-/*  box-shadow: 3px 1.5px 1px #888888;*/
-  border: 1px solid #ddd;
-
+    margin: 16px auto;
+    max-width: 400px;
+    padding: 16px;
+    border-radius: 2px;
+    /*  box-shadow: 3px 1.5px 1px #888888;*/
+    border: 1px solid #ddd;
 }
 
-.main{
-
-  padding-top: 60px ;
+.main {
+    padding-top: 60px;
+    /*  width: 100%;*/
 }
 
-header > span{
-	color:white;
-	font-size: 1.5em;
+header > span {
+    color: white;
+    font-size: 1.5em;
 }
 
 nav a {
-	color:white;
-	text-align: center;
-	line-height: 30px;
-
-
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
 }
 
+nav a:hover {
+    color: white;
+    text-decoration: none;
+}
 
 header {
-	flex-direction:row;
-	display:flex;
-	justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    margin-right: 4%;
+    font-size: .8em;
+}
+
+figure {
+    width: 90%;
+    margin: 0px auto;
+}
+
+figure img {
+    width: 100%;
+}
+
+#logInLink {
+    margin-right: 20px;
+}
+
+#loveJobInput {
+    width: 70%;
+}
+
+#loveJobContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+#loveJobContainer span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+#loveJobContainer span b {
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 5px;
+    width: 28px;
+    text-align: center;
+}
+
+.eventContainer {
+    height: 400px;
+    width: 60%;
+    perspective: 2000px;
+    /*	display:flex;
 	flex-direction: row;
-	display:flex;
-	justify-content: space-between;
-/*	padding-right:10px;*/
+	justify-content: space-between;*/
+    margin: 0 auto;
+}
+
+.cardContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.card {
+    /*	height:200px;
+	min-width:200px;
+	width:30%;*/
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    background-color: lightblue;
+}
+
+.card.eventDetails{
+    
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 
+.card.typeOfEvent {
+    border: 1px solid black;
+    text-align: center;
+/*    display: flex;
+    flex-direction: column;
+    justify-content: center;*/
+    transform: rotateY( 180deg )
+}
+
+.cardContainer.flipped{
+
+  transform: rotateY( 180deg );
+
+}
+
+.card.eventDetails .name{
+	font-size: 1em;
+	text-decoration: underline;
+	color:black;
+
+}

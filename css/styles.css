@@ -27,9 +27,6 @@ input {
   background-color: lightgray;
   font-size: 1.25em; }
 
-#eventTitleRow {
-  font-size: 2em; }
-
 header {
   position: fixed;
   top: 0px;

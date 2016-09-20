@@ -1,5 +1,9 @@
 /* eslint no-console: 0 */
 /* eslint indent: 0 */
+/* eslint no-mixed-spaces-and-tabs: 0 */
+/* eslint quotes: 0 */
+
+
 
 
 
@@ -42,45 +46,54 @@ var createEventForm = document.querySelector('#createEventForm');
 var displayedEvents = document.querySelector('#displayedEvents');
 var image = document.querySelector('figure');
 var loveJobOutput = document.querySelector('#output');
-var card = document.querySelector('.cardContainer');
+
 
 
 
 // Event Listeners 
 
 
-logInLink.addEventListener('click',function(){
+logInLink.addEventListener('click', function() {
 
 
-		hideLandingPage();
-		showEvents();
+    hideLandingPage();
+    showEvents();
 
 });
 
-card.addEventListener('click',function(){
-
-	console.log('clicked');
-
-	if(card.className.indexOf('flipped')==-1){
-		card.className = 'cardContainer flipped';
-		console.log(card.className);
-	}
 
 
-	else {
-		card.className = 'cardContainer';
-		console.log(card.className);
-	}
-});
+function flipCard() {
+
+
+    if (this.className.indexOf('flipped') == -1) {
+        this.className = 'cardContainer flipped';
+
+    } else {
+        this.className = 'cardContainer';
+        console.log(this.className);
+    }
+
+
+
+
+}
+
+// card.addEventListener('click', function() {
+
+//     console.log('clicked');
+
+
+// });
 
 
 createAccountLink.addEventListener('click', function() {
 
     createAccountForm.style.display = 'block';
-   
 
 
-   
+
+
 }, false);
 
 
@@ -124,16 +137,26 @@ submitEventButton.addEventListener('click', addEvent);
 
 
 
+window.onload = checkforEvents;
 
 
 function checkforEvents() {
 
-    for (let key in localStorage) {
-        let value = localStorage.getItem(key);
-        value = JSON.parse(value);
-        if (value instanceof Event) {
-            createEventDisplay(value);
+    for (let object in localStorage) {
+
+        let parsedObject = JSON.parse(localStorage[object]);
+
+        if (parsedObject['eventOrAccount'] === 'Event') {
+
+
+            createNewEventCard(parsedObject);
         }
+
+        // let value = localStorage.getItem(key);
+        // value = JSON.parse(value);
+        // if (value instanceof Event) {
+        //     createEventDisplay(value);
+        // }
     }
 }
 
@@ -307,7 +330,7 @@ function addEvent() {
     let message = messageInput.value;
     let event = new Event(name, type, host, startTime, endTime, guests, location, message);
     localStorage.setItem(name, JSON.stringify(event));
-    createEventDisplay(event);
+    createNewEventCard(event);
 
     eventInput.value = '';
     typeEventInput.value = '';
@@ -328,27 +351,58 @@ function addEvent() {
 
 function showEvents() {
 
-    let eventContainer = document.getElementById('eventContainer');
-    eventContainer.style.display = 'block';
+    let eventsContainer = document.getElementById('eventsContainer');
+    eventsContainer.style.display = 'block';
 
 }
 
 
-function createNewEvent() {
 
-    let event1 = document.getElementById('event1');
-    let newEvent = event1.cloneNode(true);
-    let numberOfEvents = document.getElementsByClassName('event').length;
-    newEvent.id = 'event' + ++numberOfEvents;
-    newEvent.style.display = 'block';
 
-    eventContainer.appendChild(newEvent);
+
+function createNewEventCard(eventInfo) {
+
+
+
+    let newCard = document.createElement('div');
+    newCard.className = "event";
+
+    // creates the HTML for a new card
+
+    let newCardHTML = `<div class="cardContainer">`;
+    newCardHTML += `<div class="card typeOfEvent"><h2>${eventInfo.eventType}</h2></div>`;
+    newCardHTML += `<div class="card eventDetails">`;
+    newCardHTML += `<span>${eventInfo.name}</span>`;
+    newCardHTML += `<span>Host: ${eventInfo.host}</span><br>`;
+    newCardHTML += `<span>Start: ${eventInfo.startDateTime}</span>`;
+    newCardHTML += `<span>End: ${eventInfo.endDateTime}</span>`;
+    newCardHTML += `<span>Location: ${eventInfo.location}</span>`;
+    newCardHTML += `<span><ul>`;
+    for (let i = 0; i < eventInfo.guestList.length; i++) {
+        newCardHTML += `<li>${eventInfo.guestList[i]}</li>`;
+
+    }
+    newCardHTML += `</ul></span>`;
+    newCardHTML += `<span id="message">${eventInfo.optMessage}</span></div>`;
+
+    newCard.innerHTML = newCardHTML;
+
+    // makes the card flippable
+
+    newCard.addEventListener('click', flipCard, false);
+
+    //adds the HTML to the already existing HTML in the events container
+    let eventsContainer = document.getElementById('eventsContainer');
+    eventsContainer.appendChild(newCard);
+
+    console.log('a new event card created!');
+
+
+
 
 }
 
 
-function hideLandingPage(){
-	 image.style.display = 'none';
+function hideLandingPage() {
+    image.style.display = 'none';
 }
-
-

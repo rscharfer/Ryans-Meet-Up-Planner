@@ -407,8 +407,12 @@ function createNewEventCard(eventInfo) {
 
 
 function formatTime(datetime){
+
+    let result=''
    
     let month = datetime.slice(5,7);
+
+    let hour = datetime.slice(11,13)
 
     switch(month){
 
@@ -460,12 +464,9 @@ function formatTime(datetime){
         month = 'December';
         break;
 
+}
 
+    result = `${month} ${datetime.slice(8,10)}, ${datetime.slice(0,4)}`;
 
-
-    }
-
-
-
-    return month;
+    return result;
 }

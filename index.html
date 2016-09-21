@@ -8,15 +8,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-    
-  <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-<!--     <!-- Latest compiled and minified JavaScript -->
-<!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --> -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -24,23 +19,19 @@
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <!-- Add your site or application content here -->
+    <!-- Header Start  -->
     <header>
         <span>Event Planner</span>
-        <nav><a id="logInLink">Login</a><a id="createAccountLink">Register</a></nav>
+        <nav><a id="createEvent">Create Event</a><a id="seeEvents">See Events</a><a id="createAccount">Register</a></nav>
     </header>
+    <!-- Main Start  -->
     <div class="main">
- <!--        <div id="greeting">
-            <h3 id="whatToDo">Create an event?</h3>
-            <button id="createEventButton">Yes, please!</button>
-            <button id="createAccountButton">Not yet</button>
-            
-        </div> -->
-
+        <!--  Figure Start -->
         <figure>
             <img src="img/wedding.jpg" alt="A newly married couple walking through the woods">
             <figcaption>Create your own event today!</figcaption>
         </figure>
+        <!-- Start Create Account Form -->
         <form action="" id="createAccountForm" style="display:none">
             <h3>Create an Account</h3>
             <label for="nameInput">
@@ -60,14 +51,16 @@
                 <br>
                 <h5>Please create a password</h5>
                 <br>
-                <input type="password" id="passwordInput" placeholder="**********" required><br><span id="passwordTip1"></span>
+                <input type="password" id="passwordInput" placeholder="**********" required>
+                <br><span id="passwordTip1"></span>
             </label>
             <br>
             <label for="passwordConfirmationInput">
                 <br>
                 <h5>Please type the password again</h5>
                 <br>
-                <input type="password" id="passwordConfirmationInput" placeholder="**********" required><br><span id="passwordTip2"></span>
+                <input type="password" id="passwordConfirmationInput" placeholder="**********" required>
+                <br><span id="passwordTip2"></span>
             </label>
             <br>
             <label for="birthdayInput">
@@ -94,16 +87,15 @@
             <label for="loveJobInput">
                 <br>
                 <h5>On a scale from 1 to 10, how much do you love your job?</h5> <span>(optional)</span>
-                
                 <div id="loveJobContainer">
-                <input type="range" value="5" step="1" min="1" max="10" id="loveJobInput"><span><b id="output">5</b></span>
+                    <input type="range" value="5" step="1" min="1" max="10" id="loveJobInput"><span><b id="output">5</b></span>
                 </div>
             </label>
             <br>
             <button id="submitNewAccount" type="submit">Create Account</button>
         </form>
+        <!-- Create New Event Form -->
         <form id="createEventForm" style="display:none">
-           
             <h3>Create an Event</h3>
             <label for="eventInput">
                 <h5>What do you want to call the event?</h5>
@@ -178,73 +170,24 @@
             </label>
             <br>
         </form>
-    </div>
-    <div id="eventsContainer">
-    <!-- <h3 style="text-align:center">Hello, Ryan!  Here are your events.</h3> -->
-<!-- 
-    <div class="event">
+        <!--  Events Container -->
+        <div id="eventsPage" style="display:none">
 
-        <div class="cardContainer">
-        
-        <div class="card typeOfEvent"><h2>Wedding</h2></div>
-        <div class="card eventDetails">
-            <span id="name">Mary's Wedding</span>
-            <span id="host">Host: Tom Lerch</span><br>
-            <span id='startTime'>Start: August 5, 2015 5:30pm</span>
-            <span id="endTime">End: August 5, 2015 7:30pm</span>
-            <span id="location">Location: Lerchenfeld 9 22081 Hamburg, Germany</span>
-            <span id="guests"><ul><li>Ryan Scharfer</li><li>Tali Faris</li></ul></span>
-            <span id="message">Bring Beer!</span>
+            <section class="card">
+                <p class="eventName">Mary's Wedding</p>
+                <p class="eventHost"><span class="header">Host:</span><span class="info">Ryan Scharfer</span></p>
+                <p class="startTime"><span class="header">Start Time:</span><span class="info">Jan 5th, 1982 3:45PM</span></p>
+                <p class="endTime"><span class="header">Start Time:</span><span class="info">Jan 5th, 1982 3:45PM</span></p>
+                <p class="whosComing"><span class="header">Who's Coming:</span><ul class="info"><li>Ryan Scharfer</li><li>Tali Faris</li><li>Travis Hylen</li></ul></p>
+                <p class="location"><span class="header">Location:</span><span class="info">Lerchenfeld 9 22081 Hamburg, Germany</span></p>
+                <p class="message">"Please remember to shower!"</p>
+
+
+            </section>
+            
         </div>
-        </div>
- -->
     </div>
-  <!--       <div class="container event" id="event1">
-            <div class="row titleRow eventTitleRow">
-                <div class="col-xs-12" class="gridEventType">Wedding</div>
-            </div>
-            <div class="row bodyRow eventBodyRow">
-                <div class="col-xs-12" class="gridEventName">Ryan and Franzi's Wedding</div>
-            </div>
-            <div class="row titleRow">
-                <div class="col-xs-12">Host</div>
-            </div>
-            <div class="row bodyRow">
-                <div class="col-xs-12" class="gridEventHost">Ryan's Parents</div>
-            </div>
-            <div class="row titleRow">
-                <div class="col-xs-12">Date</div>
-            </div>
-            <div class="row bodyRow">
-                <div class="col-xs-12" class="gridEventDate">Sept. 12 2016</div>
-            </div>
-            <div class="row titleRow">
-                <div class="col-xs-12">Time</div>
-            </div>
-            <div class="row bodyRow">
-                <div class="col-xs-12" class="gridEventTime">16:00 - 22:00</div>
-            </div>
-            <div class="row titleRow">
-                <div class="col-xs-12">Location</div>
-            </div>
-            <div class="row bodyRow">
-                <div class="col-xs-12" class="gridEventLocation">Lerchenfeld 9</div>
-            </div>
-            <div class="row titleRow">
-                <div class="col-xs-12">Invited</div>
-            </div>
-            <div class="row bodyRow">
-                <div class="col-xs-12">
-                    <ul class="gridEventGuests">
-                        <li>Tali Faris</li>
-                        <li>Tim Ferriss</li>
-                        <li>Ryan Scharfer</li>
-                        <li>Franzi Struch</li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
-    </div>
+    <!--  End of Main Container -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
     window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')
@@ -252,7 +195,7 @@
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<!--     <script>
+    <!--     <script>
     (function(b, o, i, l, e, r) {
         b.GoogleAnalyticsObject = l;
         b[l] || (b[l] =

@@ -4,12 +4,17 @@
 /* eslint quotes: 0 */
 
 
+//header
+var createEvent = document.querySelector('#createEvent');
+var register = document.querySelector('#createAccount');
+var seeEvents = document.querySelector('#seeEvents');
+
+// huge image
+var image = document.querySelector('figure');
 
 
-
-// Inputs 
-
-
+// new account form
+var registerForm = document.querySelector('#createAccountForm');
 var nameInput = document.querySelector('#nameInput');
 var emailInput = document.querySelector('#emailInput');
 var passwordInput = document.querySelector('#passwordInput');
@@ -18,34 +23,98 @@ var birthdayInput = document.querySelector('#birthdayInput');
 var employerInput = document.querySelector('#employerInput');
 var positionInput = document.querySelector('#positionInput');
 var loveJobInput = document.querySelector('#loveJobInput');
+var loveJobOutput = document.querySelector('#output');
+var submitAccountButton = document.querySelector('#submitNewAccount');
 
 
 
-
+// new event form
+var createEventForm = document.querySelector('#createEventForm');
 var eventInput = document.querySelector('#eventInput');
 var typeEventInput = document.querySelector('#typeEventInput');
 var hostInput = document.querySelector('#hostInput');
 var startTimeInput = document.querySelector('#startTimeInput');
 var endTimeInput = document.querySelector('#endTimeInput');
+//var guestInput = document.querySelector('#guestInput');
+var addGuestButton = document.querySelector('#addGuest');
 var locationInput = document.querySelector('#locationInput');
 var messageInput = document.querySelector('#messageInput');
-
-
-// Buttons
-
-var createEventButton = document.querySelector('#createEventButton');
 var submitEventButton = document.querySelector('#addEvent');
-var submitAccountButton = document.querySelector('#submitNewAccount');
-var addGuestButton = document.querySelector('#addGuest');
-var logInLink = document.querySelector('#logInLink');
-var createAccountLink = document.querySelector('#createAccountLink');
 
-// Displays
-var createAccountForm = document.querySelector('#createAccountForm');
-var createEventForm = document.querySelector('#createEventForm');
-var displayedEvents = document.querySelector('#displayedEvents');
-var image = document.querySelector('figure');
-var loveJobOutput = document.querySelector('#output');
+
+
+//event listing
+var eventsPage = document.getElementById('eventsPage');
+
+
+
+
+
+//event listeners
+createEvent.addEventListener('click', function() {
+    createEventForm.style.display = 'block';
+    image.style.display = 'none';
+    eventsPage.style.display = 'none';
+    registerForm.style.display = 'none';
+
+    
+
+
+},false);
+
+
+register.addEventListener('click', function() {
+    createEventForm.style.display = 'none';
+    image.style.display = 'none';
+    eventsPage.style.display = 'none';
+    registerForm.style.display = 'block';
+
+}, false);
+
+seeEvents.addEventListener('click',function(){
+    createEventForm.style.display = 'none';
+    image.style.display = 'none';
+    registerForm.style.display = 'none';
+    eventsPage.style.display = 'block';
+    showEvents();
+
+},false)
+
+
+
+
+
+
+
+function showEvents() {
+
+    eventsPage.innerHTML="";
+
+    for (let object in localStorage) {
+
+        let parsedObject = JSON.parse(localStorage[object]);
+
+        if (parsedObject['eventOrAccount'] === 'Event') {
+
+
+            createNewEventCard(parsedObject);
+            console.dir(parsedObject)
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -53,48 +122,7 @@ var loveJobOutput = document.querySelector('#output');
 // Event Listeners 
 
 
-logInLink.addEventListener('click', function() {
 
-
-    hideLandingPage();
-    showEvents();
-
-});
-
-
-
-function flipCard() {
-
-
-    if (this.className.indexOf('flipped') == -1) {
-        this.className = 'cardContainer flipped';
-
-    } else {
-        this.className = 'cardContainer';
-        console.log(this.className);
-    }
-
-
-
-
-}
-
-// card.addEventListener('click', function() {
-
-//     console.log('clicked');
-
-
-// });
-
-
-createAccountLink.addEventListener('click', function() {
-
-    createAccountForm.style.display = 'block';
-
-
-
-
-}, false);
 
 
 submitAccountButton.addEventListener('click', function(e) {
@@ -123,8 +151,8 @@ loveJobInput.addEventListener('input', function() {
 
 // createEventButton.addEventListener('click',function(){
 
-// 	createEventForm.style.display='block';
-// 	greeting.style.display='none';
+//  createEventForm.style.display='block';
+//  greeting.style.display='none';
 // },false);
 
 
@@ -137,28 +165,10 @@ submitEventButton.addEventListener('click', addEvent);
 
 
 
-window.onload = checkforEvents;
 
 
-function checkforEvents() {
-
-    for (let object in localStorage) {
-
-        let parsedObject = JSON.parse(localStorage[object]);
-
-        if (parsedObject['eventOrAccount'] === 'Event') {
 
 
-            createNewEventCard(parsedObject);
-        }
-
-        // let value = localStorage.getItem(key);
-        // value = JSON.parse(value);
-        // if (value instanceof Event) {
-        //     createEventDisplay(value);
-        // }
-    }
-}
 
 
 
@@ -344,17 +354,12 @@ function addEvent() {
     let guestList = document.querySelector('label[for="guestInput"] ul');
     guestList.innerHTML = '';
     guestListArray = [];
+    createEventForm.style.display='none';
 
 
 }
 
 
-function showEvents() {
-
-    let eventsContainer = document.getElementById('eventsContainer');
-    eventsContainer.style.display = 'block';
-
-}
 
 
 
@@ -364,38 +369,35 @@ function createNewEventCard(eventInfo) {
 
 
 
-    let newCard = document.createElement('div');
-    newCard.className = "event";
+    let newCard = document.createElement('section');
+    newCard.className = "card";
 
     // creates the HTML for a new card
 
-    let newCardHTML = `<div class="cardContainer">`;
-    newCardHTML += `<div class="card typeOfEvent"><h2>${eventInfo.eventType}</h2></div>`;
-    newCardHTML += `<div class="card eventDetails">`;
-    newCardHTML += `<span>${eventInfo.name}</span>`;
-    newCardHTML += `<span>Host: ${eventInfo.host}</span><br>`;
-    newCardHTML += `<span>Start: ${eventInfo.startDateTime}</span>`;
-    newCardHTML += `<span>End: ${eventInfo.endDateTime}</span>`;
-    newCardHTML += `<span>Location: ${eventInfo.location}</span>`;
-    newCardHTML += `<span><ul>`;
+    let newCardHTML = `<p class="eventName">${eventInfo.name}</p>`;
+    newCardHTML += `<p class="eventHost"><span class="header">Host:</span><span class="info">${eventInfo.host}</span></p>`;
+    newCardHTML += `<p class="startTime"><span class="header">Start Time:</span><span class="info">${eventInfo.startDateTime}</span></p>`;
+    newCardHTML += `<p class="endTime"><span class="header">End Time:</span><span class="info">${eventInfo.endDateTime}</span></p>`;
+    newCardHTML += `<p class="location"><span class="header">Location:</span><span class="info"> ${eventInfo.location}</span></p>`;
+    newCardHTML += `<p class="whosComing"><span class="header">Who's Coming:</span><ul class="info">`;
     for (let i = 0; i < eventInfo.guestList.length; i++) {
         newCardHTML += `<li>${eventInfo.guestList[i]}</li>`;
 
     }
-    newCardHTML += `</ul></span>`;
-    newCardHTML += `<span id="message">${eventInfo.optMessage}</span></div>`;
+    newCardHTML += `</ul></p>`;
+    newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;
 
     newCard.innerHTML = newCardHTML;
 
     // makes the card flippable
 
-    newCard.addEventListener('click', flipCard, false);
+    
 
-    //adds the HTML to the already existing HTML in the events container
-    let eventsContainer = document.getElementById('eventsContainer');
-    eventsContainer.appendChild(newCard);
+    eventsPage.appendChild(newCard);
 
-    console.log('a new event card created!');
+    console.log(formatTime(eventInfo.startDateTime));
+
+   
 
 
 
@@ -403,6 +405,67 @@ function createNewEventCard(eventInfo) {
 }
 
 
-function hideLandingPage() {
-    image.style.display = 'none';
+
+function formatTime(datetime){
+   
+    let month = datetime.slice(5,7);
+
+    switch(month){
+
+        case '01':
+        month = 'January';
+        break;
+
+        case '02':
+        month = 'February';
+        break;
+
+        case '03':
+        month = 'March';
+        break;
+
+        case '04':
+        month = 'April';
+        break;
+
+        case '05':
+        month = 'May';
+        break;
+
+        case '06':
+        month = 'June';
+        break;
+
+        case '07':
+        month = 'July';
+        break;
+
+        case '08':
+        month = 'August';
+        break;
+
+        case '09':
+        month = 'September';
+        break;
+
+        case '10':
+        month = 'October';
+        break;
+
+        case '11':
+        month = 'November';
+        break;
+
+        case '12':
+        month = 'December';
+        break;
+
+
+
+
+    }
+
+
+
+    return month;
 }

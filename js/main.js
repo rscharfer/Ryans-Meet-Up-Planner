@@ -51,12 +51,15 @@ var eventsPage = document.getElementById('eventsPage');
 
 
 // constructors
-class Event {
+
+
+
+function ProjectEvent (name, eventType, host, startDateTime, endDateTime, guestList, location, optMessage = '') {
 
 
 
 
-    constructor(name, eventType, host, startDateTime, endDateTime, guestList, location, optMessage = '') {
+   
 
         this.eventOrAccount = 'Event';
         this.name = name;
@@ -67,22 +70,15 @@ class Event {
         this.guestList = guestList;
         this.location = location;
         this.optMessage = optMessage;
-    }
+    
 
 
 }
 
 
+function Account (name, email, password, birthdate, work, position, workLike){
 
-
-class Account {
-
-
-
-
-    constructor(name, email, password, birthdate, work, position, workLike) {
-
-        this.eventOrAccount = 'Account';
+ this.eventOrAccount = 'Account';
         this.name = name;
         this.email = email;
         this.password = password;
@@ -90,8 +86,6 @@ class Account {
         this.work = work;
         this.position = position;
         this.workLike = workLike;
-
-    }
 
 
 }
@@ -225,7 +219,7 @@ createEventButton.addEventListener('click', function(){
     let guests = guestListArray;
     let location = locationInput.value;
     let message = messageInput.value;
-    let event = new Event(name, type, host, startTime, endTime, guests, location, message);
+    let event = new ProjectEvent(name, type, host, startTime, endTime, guests, location, message);
     localStorage.setItem(name, JSON.stringify(event));
     createNewEventCard(event);
 

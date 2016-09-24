@@ -146,6 +146,10 @@ addGuestButton.addEventListener('click', function(){
     let formGuestLabel = document.querySelector('label[for="guestInput"]');
     let guestList = document.querySelector('label[for="guestInput"] ul');
     let guestName = formGuestLabel.querySelector('input').value;
+    // this is to prevent an empty li from being created by Mutation Observer!!
+    if (guestName===""){
+        return;
+    }
     let newItem = document.createElement('li');
     newItem.innerHTML = guestName;
     guestList.appendChild(newItem);

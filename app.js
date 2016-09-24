@@ -5,9 +5,9 @@
 
 
 //header
-var createEvent = document.querySelector('#createEvent');
-var register = document.querySelector('#createAccount');
-var seeEvents = document.querySelector('#seeEvents');
+var showCreateEventForm = document.querySelector('#createEvent');
+var showRegister = document.querySelector('#createAccount');
+var showEvents = document.querySelector('#showEvents');
 
 // huge image
 var image = document.querySelector('figure');
@@ -18,13 +18,13 @@ var registerForm = document.querySelector('#createAccountForm');
 var nameInput = document.querySelector('#nameInput');
 var emailInput = document.querySelector('#emailInput');
 var passwordInput = document.querySelector('#passwordInput');
-var confirmedPassword = document.querySelector('#passwordConfirmationInput');
+var secondPasswordInput = document.querySelector('#secondPasswordInput');
 var birthdayInput = document.querySelector('#birthdayInput');
 var employerInput = document.querySelector('#employerInput');
 var positionInput = document.querySelector('#positionInput');
 var loveJobInput = document.querySelector('#loveJobInput');
 var loveJobOutput = document.querySelector('#output');
-var submitAccountButton = document.querySelector('#submitNewAccount');
+var createAccountButton = document.querySelector('#createAccountButton');
 
 
 
@@ -35,11 +35,14 @@ var typeEventInput = document.querySelector('#typeEventInput');
 var hostInput = document.querySelector('#hostInput');
 var startTimeInput = document.querySelector('#startTimeInput');
 var endTimeInput = document.querySelector('#endTimeInput');
-//var guestInput = document.querySelector('#guestInput');
 var addGuestButton = document.querySelector('#addGuest');
 var locationInput = document.querySelector('#locationInput');
 var messageInput = document.querySelector('#messageInput');
-var submitEventButton = document.querySelector('#addEvent');
+var createEventButton = document.querySelector('#addEvent');
+var guestListArray = [];
+
+
+
 
 
 
@@ -47,144 +50,7 @@ var submitEventButton = document.querySelector('#addEvent');
 var eventsPage = document.getElementById('eventsPage');
 
 
-
-
-
-//event listeners
-createEvent.addEventListener('click', function() {
-    createEventForm.style.display = 'block';
-    image.style.display = 'none';
-    eventsPage.style.display = 'none';
-    registerForm.style.display = 'none';
-
-    
-
-
-},false);
-
-
-register.addEventListener('click', function() {
-    createEventForm.style.display = 'none';
-    image.style.display = 'none';
-    eventsPage.style.display = 'none';
-    registerForm.style.display = 'block';
-
-}, false);
-
-seeEvents.addEventListener('click',function(){
-    createEventForm.style.display = 'none';
-    image.style.display = 'none';
-    registerForm.style.display = 'none';
-    eventsPage.style.display = 'block';
-    showEvents();
-
-},false)
-
-
-
-
-
-
-
-function showEvents() {
-
-    eventsPage.innerHTML="";
-
-    for (let object in localStorage) {
-
-        let parsedObject = JSON.parse(localStorage[object]);
-
-        if (parsedObject['eventOrAccount'] === 'Event') {
-
-
-            createNewEventCard(parsedObject);
-            console.dir(parsedObject)
-        }
-
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Event Listeners 
-
-
-
-
-
-submitAccountButton.addEventListener('click', function(e) {
-
-    //e.preventDefault();
-    let name = nameInput.value;
-    let email = emailInput.value;
-    let password = passwordInput.value;
-    let birthday = birthdayInput.value;
-    let employer = employerInput.value;
-    let position = positionInput.value;
-    let loveJob = loveJobInput.value;
-    let newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
-    localStorage.setItem(name, JSON.stringify(newAccount));
-    console.dir(JSON.parse(localStorage.getItem(name)) instanceof Account);
-
-
-}, false);
-
-
-loveJobInput.addEventListener('input', function() {
-    loveJobOutput.innerHTML = this.value;
-})
-
-
-
-// createEventButton.addEventListener('click',function(){
-
-//  createEventForm.style.display='block';
-//  greeting.style.display='none';
-// },false);
-
-
-
-addGuestButton.addEventListener('click', addGuest);
-passwordInput.addEventListener('input', checkPassword);
-confirmedPassword.addEventListener('blur', samePassword);
-submitEventButton.addEventListener('click', addEvent);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var events = [];
-
-
+// constructors
 class Event {
 
 
@@ -232,20 +98,57 @@ class Account {
 
 
 
+//event listeners
+
+
+showCreateEventForm.addEventListener('click', function() {
+    createEventForm.style.display = 'block';
+    image.style.display = 'none';
+    eventsPage.style.display = 'none';
+    registerForm.style.display = 'none';
+}, false);
+
+
+showRegister.addEventListener('click', function() {
+    createEventForm.style.display = 'none';
+    image.style.display = 'none';
+    eventsPage.style.display = 'none';
+    registerForm.style.display = 'block';
+}, false);
+
+
+showEvents.addEventListener('click',function(){
+    createEventForm.style.display = 'none';
+    image.style.display = 'none';
+    registerForm.style.display = 'none';
+    eventsPage.style.display = 'block';
+    createCards();
+}, false);
+
+
+createAccountButton.addEventListener('click', function() {
+    let name = nameInput.value;
+    let email = emailInput.value;
+    let password = passwordInput.value;
+    let birthday = birthdayInput.value;
+    let employer = employerInput.value;
+    let position = positionInput.value;
+    let loveJob = loveJobInput.value;
+    let newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
+    localStorage.setItem(name, JSON.stringify(newAccount));
+    console.dir(JSON.parse(localStorage.getItem(name)) instanceof Account);
+}, false);
 
 
 
 
+loveJobInput.addEventListener('input', function() {
+    loveJobOutput.innerHTML = this.value;
+},false);
 
 
 
-
-
-
-
-var guestListArray = [];
-
-function addGuest() {
+addGuestButton.addEventListener('click', function(){
     let formGuestLabel = document.querySelector('label[for="guestInput"]');
     let guestList = document.querySelector('label[for="guestInput"] ul');
     let guestName = formGuestLabel.querySelector('input').value;
@@ -254,19 +157,13 @@ function addGuest() {
     guestList.appendChild(newItem);
     formGuestLabel.querySelector('input').value = '';
     guestListArray.push(guestName);
-
-
-}
-
+},false);
 
 
 
-function checkPassword() {
-
-
+passwordInput.addEventListener('input', function(){
     let password = this.value;
     let message = '';
-
 
     if (!/[a-z]/.test(password)) {
         message = ' Please add a lower case letter to the password.';
@@ -293,43 +190,33 @@ function checkPassword() {
         this.setCustomValidity('');
     }
 
-
     let passwordTip = document.querySelector('#passwordTip1');
     passwordTip.innerHTML = message;
     console.log(this.checkValidity());
-}
-
-function samePassword() {
+});
 
 
-    let confirmedPassword = this.value;
+secondPasswordInput.addEventListener('blur', function(){
+    let secondPasswordInput = this.value;
     let passwordInput = document.querySelector('#passwordInput');
     let password = passwordInput.value;
     let passwordTip = document.querySelector('#passwordTip2');
-
     let message = '';
 
-
-
-
-
-    if (confirmedPassword !== password) {
+    if (secondPasswordInput !== password) {
         message = 'The two passwords have to match.';
         this.setCustomValidity(message);
 
     } else {
-
         message = 'Passwords match!';
         this.setCustomValidity('');
     }
 
-
-
     passwordTip.innerHTML = message;
-}
+});
 
 
-function addEvent() {
+createEventButton.addEventListener('click', function(){
     let name = eventInput.value;
     let type = typeEventInput.value;
     let host = hostInput.value;
@@ -355,20 +242,27 @@ function addEvent() {
     guestList.innerHTML = '';
     guestListArray = [];
     createEventForm.style.display='none';
+});
 
 
+function createCards() {
+    eventsPage.innerHTML="";
+
+    for (let object in localStorage) {
+        
+        let parsedObject = JSON.parse(localStorage[object]);
+
+        if (parsedObject['eventOrAccount'] === 'Event') {
+            
+            createNewEventCard(parsedObject);
+          
+        }
+
+    }
 }
 
 
-
-
-
-
-
 function createNewEventCard(eventInfo) {
-
-
-
     let newCard = document.createElement('section');
     newCard.className = "card";
 
@@ -386,33 +280,19 @@ function createNewEventCard(eventInfo) {
     }
     newCardHTML += `</ul></p>`;
     newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;
-
     newCard.innerHTML = newCardHTML;
-
-    // makes the card flippable
-
-    
-
     eventsPage.appendChild(newCard);
-
-    console.log(formatTime(eventInfo.startDateTime));
-
-   
-
-
-
-
 }
 
 
 
 function formatTime(datetime){
 
-    let result=''
+    let result='';
    
     let month = datetime.slice(5,7);
 
-    let hour = datetime.slice(11,13)
+    let hour = datetime.slice(11,13);
 
     switch(month){
 

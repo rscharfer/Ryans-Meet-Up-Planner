@@ -223,19 +223,19 @@ createEventButton.addEventListener('click', function(){
     localStorage.setItem(name, JSON.stringify(event));
     createNewEventCard(event);
 
-    eventInput.value = '';
-    typeEventInput.value = '';
-    hostInput.value = '';
-    startTimeInput.value = '';
-    endTimeInput.value = '';
-    guestListArray = '';
-    locationInput.value = '';
-    messageInput.value = '';
+    // eventInput.value = '';
+    // typeEventInput.value = '';
+    // hostInput.value = '';
+    // startTimeInput.value = '';
+    // endTimeInput.value = '';
+    // guestListArray = '';
+    // locationInput.value = '';
+    // messageInput.value = '';
 
-    let guestList = document.querySelector('label[for="guestInput"] ul');
-    guestList.innerHTML = '';
-    guestListArray = [];
-    createEventForm.style.display='none';
+    // let guestList = document.querySelector('label[for="guestInput"] ul');
+    // guestList.innerHTML = '';
+    // guestListArray = [];
+    // createEventForm.style.display='none';
 });
 
 

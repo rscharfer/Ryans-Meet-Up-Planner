@@ -33,6 +33,7 @@ var createEventForm = document.querySelector('#createEventForm');
 var eventInput = document.querySelector('#eventInput');
 var typeEventInput = document.querySelector('#typeEventInput');
 var hostInput = document.querySelector('#hostInput');
+var guestInput = document.querySelector('#guestInput');
 var startTimeInput = document.querySelector('#startTimeInput');
 var endTimeInput = document.querySelector('#endTimeInput');
 var addGuestButton = document.querySelector('#addGuest');
@@ -215,6 +216,17 @@ secondPasswordInput.addEventListener('blur', function(){
 
 
 createEventButton.addEventListener('click', function(){
+
+
+    if (!guestListArray.length>0){
+        guestInput.setCustomValidity('You need at least one guest');
+    }
+
+    else{
+
+        guestInput.setCustomValidity('');
+
+    }
     let name = eventInput.value;
     let type = typeEventInput.value;
     let host = hostInput.value;

@@ -268,8 +268,8 @@ function createNewEventCard(eventInfo) {
 
     let newCardHTML = `<p class="eventName">${eventInfo.name}</p>`;
     newCardHTML += `<p class="eventHost"><span class="header">Host:</span><span class="info">${eventInfo.host}</span></p>`;
-    newCardHTML += `<p class="startTime"><span class="header">Start Time:</span><span class="info">${eventInfo.startDateTime}</span></p>`;
-    newCardHTML += `<p class="endTime"><span class="header">End Time:</span><span class="info">${eventInfo.endDateTime}</span></p>`;
+    newCardHTML += `<p class="startTime"><span class="header">Start Time:</span><span class="info">${formatTime(eventInfo.startDateTime)}</span></p>`;
+    newCardHTML += `<p class="endTime"><span class="header">End Time:</span><span class="info">${formatTime(eventInfo.endDateTime)}</span></p>`;
     newCardHTML += `<p class="location"><span class="header">Location:</span><span class="info"> ${eventInfo.location}</span></p>`;
     newCardHTML += `<p class="whosComing"><span class="header">Who's Coming:</span><ul class="info">`;
     for (let i = 0; i < eventInfo.guestList.length; i++) {
@@ -281,6 +281,13 @@ function createNewEventCard(eventInfo) {
     newCard.innerHTML = newCardHTML;
     eventsPage.appendChild(newCard);
 }
+
+
+
+
+
+
+
 
 
 

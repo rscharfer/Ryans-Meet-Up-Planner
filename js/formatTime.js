@@ -1,3 +1,5 @@
+/* eslint indent: 0 */
+
 function formatTime(datetime){
 
     let result='';
@@ -5,6 +7,37 @@ function formatTime(datetime){
     let month = datetime.slice(5,7);
 
     let hour = datetime.slice(11,13);
+
+    let day = datetime.slice(8,10);
+
+    let year = datetime.slice(0,4);
+
+    let minute = datetime.slice(14,16);
+
+    let ampm = undefined;
+
+
+    
+
+    if (hour>=12){
+
+        ampm ='PM';
+    }
+
+    else {
+        ampm = 'AM';
+    }
+
+    if (hour>12){
+
+        hour = hour - 12;
+    }
+
+    else if (hour==='00'){
+        hour=12;
+    }
+
+
 
     switch(month){
 
@@ -58,7 +91,7 @@ function formatTime(datetime){
 
 }
 
-    result = `${month} ${datetime.slice(8,10)}, ${datetime.slice(0,4)}`;
+    result = `${month} ${day}, ${year} ${hour}:${minute} ${ampm}`;
 
     return result;
 }

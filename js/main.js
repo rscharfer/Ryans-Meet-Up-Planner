@@ -289,7 +289,8 @@ function createNewEventCard(eventInfo) {
 
     }
     newCardHTML += `</ul></p>`;
-    newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;
+    if(eventInfo.optMessage!==''){
+    newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;}
     newCard.innerHTML = newCardHTML;
     eventsPage.appendChild(newCard);
 }

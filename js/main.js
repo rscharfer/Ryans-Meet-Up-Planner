@@ -195,7 +195,7 @@ passwordInput.addEventListener('input', function() {
 });
 
 
-secondPasswordInput.addEventListener('blur', function() {
+secondPasswordInput.addEventListener('input', function() {
     let secondPasswordInput = this.value;
     let passwordInput = document.querySelector('#passwordInput');
     let password = passwordInput.value;

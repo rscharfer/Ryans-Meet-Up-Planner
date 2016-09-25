@@ -138,10 +138,19 @@ figure img {
   justify-content: flex-start;
   text-align: center; }
 
+span[data-validate-tip] {
+  color: red; }
+
 #eventsPage {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+
+#guestTip {
+  color: red; }
+
+#passwordTip1, #passwordTip2 {
+  color: red; }
 
 @media (max-width: 425px) {
   header > span {

@@ -38,6 +38,7 @@
                 <h5>What is your name?</h5>
                 <br>
                 <input type="text" id="nameInput" placeholder="Hans Down" required autofocus>
+                <br><span data-validate-tip id="nameTip"></span>
             </label>
              <br>
             <label for="emailInput">
@@ -45,6 +46,7 @@
                 <h5>What is your email address?</h5>
                 <br>
                 <input type="email" id="emailInput" placeholder="hansdown@gmail.com" required>
+                <br><span data-validate-tip id="emailTip"></span>
             </label>
             <br>
             <label for="passwordInput">
@@ -101,6 +103,7 @@
                 <h5>What do you want to call the event?</h5>
                 <br>
                 <input type="text" id="eventInput" placeholder="Mary and Ben's Wedding" required autofocus>
+                <br><span data-validate-tip id="eventTip"></span>
             </label>
              <br>
             <label for="typeEventInput">
@@ -116,6 +119,7 @@
                     <option value="bar mitzvah"></option>
                     <option value="public shaming"></option>
                 </datalist>
+                <br><span data-validate-tip id="typeTip"></span>
             </label>
             <br>
             <label for="hostInput">
@@ -123,6 +127,7 @@
                 <h5>Who is the host of the event?</h5>
                 <br>
                 <input type="text" id="hostInput" placeholder="Mary's Dad" required>
+                 <br><span data-validate-tip id="hostTip"></span>
             </label>
             <br>
             <label for="startTimeInput">
@@ -130,6 +135,7 @@
                 <h5>When will the event start?</h5>
                 <br>
                 <input type="datetime-local" id="startTimeInput" required>  
+                <br><span data-validate-tip id="startTip"></span>
             </label>
             <br>
             <label for="endTimeInput">
@@ -137,6 +143,7 @@
                 <h5>When will the event end?</h5>
                 <br>
                 <input type="datetime-local" id="endTimeInput" required>
+                <br><span data-validate-tip id="endTip"></span>
             </label>
            <br>
             <label for="guestInput">
@@ -144,6 +151,7 @@
                 <h5>Who do you want to invite?</h5>
                 <br>
                 <input type="text" id="guestInput" placeholder="Aunt Betty">
+                <br><span id="guestTip"></span>
                 <br><span>Current Guest List: </span>
                 <ul></ul>
                 <button type="button" id="addGuest">Add Guest</button>
@@ -154,7 +162,7 @@
                 <h5>Where will the event take place?</h5>
                 <br>
                 <input type="text" placeholder="123 Place St. New York, New York 12343" id="locationInput" autocomplete="street-address" required>
-                <br>
+                <br><span data-validate-tip id="locationTip"></span>
             </label>
             <br>
             <label for="messageInput">

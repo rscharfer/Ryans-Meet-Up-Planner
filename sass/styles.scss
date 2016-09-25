@@ -179,7 +179,10 @@ figure img {
 
 
 
+span[data-validate-tip]{
 
+    color:red;
+}
 
 
 #eventsPage{
@@ -187,6 +190,17 @@ figure img {
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+
+#guestTip{
+    color:red;
+}
+
+
+#passwordTip1, #passwordTip2{
+
+    color:red;
 }
 
 

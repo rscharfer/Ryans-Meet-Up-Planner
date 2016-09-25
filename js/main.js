@@ -55,38 +55,38 @@ var eventsPage = document.getElementById('eventsPage');
 
 
 
-function ProjectEvent (name, eventType, host, startDateTime, endDateTime, guestList, location, optMessage = '') {
+function ProjectEvent(name, eventType, host, startDateTime, endDateTime, guestList, location, optMessage = '') {
 
 
 
 
-   
 
-        this.eventOrAccount = 'Event';
-        this.name = name;
-        this.eventType = eventType;
-        this.host = host;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.guestList = guestList;
-        this.location = location;
-        this.optMessage = optMessage;
-    
+
+    this.eventOrAccount = 'Event';
+    this.name = name;
+    this.eventType = eventType;
+    this.host = host;
+    this.startDateTime = startDateTime;
+    this.endDateTime = endDateTime;
+    this.guestList = guestList;
+    this.location = location;
+    this.optMessage = optMessage;
+
 
 
 }
 
 
-function Account (name, email, password, birthdate, work, position, workLike){
+function Account(name, email, password, birthdate, work, position, workLike) {
 
- this.eventOrAccount = 'Account';
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.birthdate = birthdate;
-        this.work = work;
-        this.position = position;
-        this.workLike = workLike;
+    this.eventOrAccount = 'Account';
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.birthdate = birthdate;
+    this.work = work;
+    this.position = position;
+    this.workLike = workLike;
 
 
 }
@@ -112,7 +112,7 @@ showRegister.addEventListener('click', function() {
 }, false);
 
 
-showEvents.addEventListener('click',function(){
+showEvents.addEventListener('click', function() {
     createEventForm.style.display = 'none';
     image.style.display = 'none';
     registerForm.style.display = 'none';
@@ -139,16 +139,16 @@ createAccountButton.addEventListener('click', function() {
 
 loveJobInput.addEventListener('input', function() {
     loveJobOutput.innerHTML = this.value;
-},false);
+}, false);
 
 
 
-addGuestButton.addEventListener('click', function(){
+addGuestButton.addEventListener('click', function() {
     let formGuestLabel = document.querySelector('label[for="guestInput"]');
     let guestList = document.querySelector('label[for="guestInput"] ul');
     let guestName = formGuestLabel.querySelector('input').value;
     // this is to prevent an empty li from being created by Mutation Observer!!
-    if (guestName===""){
+    if (guestName === "") {
         return;
     }
     let newItem = document.createElement('li');
@@ -156,11 +156,11 @@ addGuestButton.addEventListener('click', function(){
     guestList.appendChild(newItem);
     formGuestLabel.querySelector('input').value = '';
     guestListArray.push(guestName);
-},false);
+}, false);
 
 
 
-passwordInput.addEventListener('input', function(){
+passwordInput.addEventListener('input', function() {
     let password = this.value;
     let message = '';
 
@@ -195,7 +195,7 @@ passwordInput.addEventListener('input', function(){
 });
 
 
-secondPasswordInput.addEventListener('blur', function(){
+secondPasswordInput.addEventListener('blur', function() {
     let secondPasswordInput = this.value;
     let passwordInput = document.querySelector('#passwordInput');
     let password = passwordInput.value;
@@ -206,7 +206,16 @@ secondPasswordInput.addEventListener('blur', function(){
         message = 'The two passwords have to match.';
         this.setCustomValidity(message);
 
-    } else {
+    }
+
+    else if (secondPasswordInput===password&&passwordInput.validity.valid==false) {
+
+        message = 'Passwords match, but neither is valid.';
+        this.setCustomValidity(message);
+
+    }
+
+     else {
         message = 'Passwords match!';
         this.setCustomValidity('');
     }
@@ -215,14 +224,12 @@ secondPasswordInput.addEventListener('blur', function(){
 });
 
 
-createEventButton.addEventListener('click', function(){
+createEventButton.addEventListener('click', function() {
 
 
-    if (!guestListArray.length>0){
+    if (!guestListArray.length > 0) {
         guestInput.setCustomValidity('You need at least one guest');
-    }
-
-    else{
+    } else {
 
         guestInput.setCustomValidity('');
 
@@ -256,16 +263,16 @@ createEventButton.addEventListener('click', function(){
 
 
 function createCards() {
-    eventsPage.innerHTML="";
+    eventsPage.innerHTML = "";
 
     for (let object in localStorage) {
-        
+
         let parsedObject = JSON.parse(localStorage[object]);
 
         if (parsedObject['eventOrAccount'] === 'Event') {
-            
+
             createNewEventCard(parsedObject);
-          
+
         }
 
     }
@@ -289,8 +296,9 @@ function createNewEventCard(eventInfo) {
 
     }
     newCardHTML += `</ul></p>`;
-    if(eventInfo.optMessage!==''){
-    newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;}
+    if (eventInfo.optMessage !== '') {
+        newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;
+    }
     newCard.innerHTML = newCardHTML;
     eventsPage.appendChild(newCard);
 }
@@ -299,8 +307,56 @@ function createNewEventCard(eventInfo) {
 
 
 
+// find the input elements whose parent label has a span elements
+
+// add blur event listener
+
+// on blur show validationMessage if it is not empty string
+
+
+var dataTips = document.querySelectorAll('[data-validate-tip]');
+
+for (let dataTip of dataTips) {
+
+    let tipLabel = dataTip.parentNode;
+    let labelsInput = tipLabel.querySelector('input');
+    let labelsSpan = tipLabel.querySelector('span');
+ 
+    labelsInput.addEventListener('blur', function() {
+
+        if (this.validationMessage !== '') {
+            labelsSpan.innerHTML = this.validationMessage;
+        } else {
+            labelsSpan.innerHTML = '';
+
+        }
+    }, false);
+
+    labelsInput.addEventListener('input', function() {
+
+        labelsSpan.innerHTML = '';
+    }, false);
+
+}
+
+
+guestInput.addEventListener('blur', function() {
+
+    if (guestListArray.length == 0&&this.value=="") {
+
+        guestInput.parentNode.querySelector('span').innerHTML = 'You need to have at least one guest.';
+
+    } else {
+
+        guestInput.parentNode.querySelector('span').innerHTML = '';
+    }
 
 
 
+}, false);
 
 
+guestInput.addEventListener('input', function() {
+    guestInput.parentNode.querySelector('span').innerHTML = '';
+
+}, false);

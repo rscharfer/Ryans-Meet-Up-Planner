@@ -163,6 +163,7 @@ addGuestButton.addEventListener('click', function() {
 passwordInput.addEventListener('input', function() {
     let password = this.value;
     let message = '';
+    let passwordTip = document.querySelector('#passwordTip1');
 
     if (!/[a-z]/.test(password)) {
         message = ' Please add a lower case letter to the password.';
@@ -189,9 +190,17 @@ passwordInput.addEventListener('input', function() {
         this.setCustomValidity('');
     }
 
-    let passwordTip = document.querySelector('#passwordTip1');
+    if (this.validity.valid==true){
+        passwordTip.style.color="blue";
+    }
+
+    else{
+        passwordTip.style.color="red";
+    }
+
+    
     passwordTip.innerHTML = message;
-    console.log(this.checkValidity());
+    
 });
 
 
@@ -205,6 +214,7 @@ secondPasswordInput.addEventListener('input', function() {
     if (secondPasswordInput !== password) {
         message = 'The two passwords have to match.';
         this.setCustomValidity(message);
+        passwordTip.style.color="red";
 
     }
 
@@ -212,12 +222,13 @@ secondPasswordInput.addEventListener('input', function() {
 
         message = 'Passwords match, but neither is valid.';
         this.setCustomValidity(message);
-
+        passwordTip.style.color="red";
     }
 
      else {
         message = 'Passwords match!';
         this.setCustomValidity('');
+        passwordTip.style.color="blue";
     }
 
     passwordTip.innerHTML = message;

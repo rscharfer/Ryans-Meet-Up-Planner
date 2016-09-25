@@ -245,7 +245,12 @@ createEventButton.addEventListener('click', function() {
         guestInput.setCustomValidity('');
 
     }
-    let name = eventInput.value;
+
+
+    if (createEventForm.checkValidity()){
+
+
+          let name = eventInput.value;
     let type = typeEventInput.value;
     let host = hostInput.value;
     let startTime = startTimeInput.value;
@@ -256,6 +261,10 @@ createEventButton.addEventListener('click', function() {
     let event = new ProjectEvent(name, type, host, startTime, endTime, guests, location, message);
     localStorage.setItem(name, JSON.stringify(event));
     createNewEventCard(event);
+
+
+    }
+  
 
     // eventInput.value = '';
     // typeEventInput.value = '';
@@ -275,6 +284,11 @@ createEventButton.addEventListener('click', function() {
 
 function createCards() {
     eventsPage.innerHTML = "";
+
+
+    if (localStorage.length==0){
+        eventsPage.innerHTML='<h3>You need to first create an event before you can see any!</h3>'
+    }
 
     for (let object in localStorage) {
 

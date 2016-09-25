@@ -161,6 +161,7 @@ addGuestButton.addEventListener('click', function() {
 
 
 passwordInput.addEventListener('input', function() {
+   
     let password = this.value;
     let message = '';
     let passwordTip = document.querySelector('#passwordTip1');
@@ -386,3 +387,30 @@ guestInput.addEventListener('input', function() {
     guestInput.parentNode.querySelector('span').innerHTML = '';
 
 }, false);
+
+
+
+guestInput.addEventListener('keydown',function(e){
+ 
+   if(e.keyCode==13){
+
+
+       let formGuestLabel = document.querySelector('label[for="guestInput"]');
+    let guestList = document.querySelector('label[for="guestInput"] ul');
+    let guestName = formGuestLabel.querySelector('input').value;
+    // this is to prevent an empty li from being created by Mutation Observer!!
+    if (guestName === "") {
+        return;
+    }
+    let newItem = document.createElement('li');
+    newItem.innerHTML = guestName;
+    guestList.appendChild(newItem);
+    formGuestLabel.querySelector('input').value = '';
+    guestListArray.push(guestName);
+    
+
+
+
+   }
+
+},false);

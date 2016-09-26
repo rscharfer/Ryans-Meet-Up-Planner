@@ -2,6 +2,12 @@
 
 function formatTime(datetime){
 
+
+    if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(datetime)){
+    return datetime;
+
+}
+
     let result='';
    
     let month = datetime.slice(5,7);

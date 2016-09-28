@@ -15,8 +15,8 @@ gulp.task('watch',['startBrowser'],function(){
 
 	gulp.watch('./index.html',['browserUpdate']);
 
-	gulp.watch('js/main.js',['browserUpdate']);
-	gulp.watch('js/formatTime.js',['browserUpdate']);
+	gulp.watch('./ecma6/**/*.js',['browserUpdate']);
+	
 
 
 	gulp.watch('./sass/**/*.scss', ['styles','browserUpdate']);

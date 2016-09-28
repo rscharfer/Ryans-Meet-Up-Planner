@@ -1,16 +1,16 @@
 # Meet-Up Event Planner
-A part of Udacity's Senior Web Develop Nanodegree Program
+A part of Udacity's Senior Web Developer Nanodegree Program
 
 
 
 
 ### About this Project
 
-This is the first project from the Udacity's Senior Web Developer Nanodegree Program.  The focus of this project is web forms -- specifically, simple web forms that are painless to fill out. The project should contain three main parts:
+This is the first project from the Udacity's Senior Web Developer Nanodegree program.  The focus of this project is web forms -- specifically, simple web forms that are painless to fill out. The project should contain primarily three main parts:
 
 * a form to create an account,
 * a form to create an event, and
-* an area that displays the events.
+* an area that displays events.
 
 [Additional requirements can be found in the project specification here.](requirements.pdf)
 
@@ -18,7 +18,7 @@ This is the first project from the Udacity's Senior Web Developer Nanodegree Pro
 
 Additional features the app has, but were not required:
 
-* events created by the user are saved to local storage and will still be there when he closes browser and opens it again
+* events created by the user are saved to local storage, which means they will still be there when he closes his browser and opens it again.
 
 
 
@@ -26,34 +26,30 @@ Additional features the app has, but were not required:
 ### The easiest way to view the app
 
 * Clone the repository to your desktop
-* Open the index.html in the root of the repository with you favorite browser
+* Open the index.html in the root of the repository with your favorite browser
 
 
 
-### How to view the app on any device
+### Running the Build Process
 
-This will run a local server on your computer, allowing you to view the app with any device in your wireless network.
-
-In order to do that, you will need to do the following after cloning the repository to your desktop:
-
-
-*Install the following dependecies from the root of the repository
+To use the same build process I used, clone the repository to your desktop, and from the root of the desktop, type the following command:
 
 ```
-$ npm install gulp
-$ npm install gulp -g
-$ npm install browser-sync -g
-
+$ npm install 
 ```
 
-* Run the following gulp commmand from your command terminal
+After all of the modules from the package.json file have installed, run the following command: 
 
 ```
-
 gulp watch
-
 ```
-This will start a server on your local machine and provide you an URL you can use to view the open from any device
+This will allow you to live edit the following files and immediately see the results on any device in your wireless network:
+
+* index.html
+* any file in the `ecma6` folder
+* any file in the `sass` folder
+
+Additionally, you can safely write with ECMA Script 6 and SASS, and your code will be converted into (almost) all-browser compatible ECMA Script 5 and CSS.
 
 
 

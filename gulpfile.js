@@ -6,7 +6,7 @@
 var gulp = require('gulp');
 var browser = require('browser-sync').create();
 var sass = require('gulp-sass');
-
+var babel=require('gulp-babel');
 
 
 gulp.task('watch',['startBrowser'],function(){
@@ -29,6 +29,13 @@ gulp.task('styles',function(){
 	.pipe(gulp.dest('./css'));
 });
 
+gulp.task('js', () => {
+    return gulp.src('./ecma6/**/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('js'));
+});
 
 gulp.task('browserUpdate',function(){
 

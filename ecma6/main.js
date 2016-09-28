@@ -1,9 +1,8 @@
-'use strict';
-
 /* eslint no-console: 0 */
 /* eslint indent: 0 */
 /* eslint no-mixed-spaces-and-tabs: 0 */
 /* eslint quotes: 0 */
+
 
 //header
 var showCreateEventForm = document.querySelector('#createEvent');
@@ -12,6 +11,7 @@ var showEvents = document.querySelector('#showEvents');
 
 // huge image
 var image = document.querySelector('figure');
+
 
 // new account form
 var registerForm = document.querySelector('#createAccountForm');
@@ -25,6 +25,8 @@ var positionInput = document.querySelector('#positionInput');
 var loveJobInput = document.querySelector('#loveJobInput');
 var loveJobOutput = document.querySelector('#output');
 var createAccountButton = document.querySelector('#createAccountButton');
+
+
 
 // new event form
 var createEventForm = document.querySelector('#createEventForm');
@@ -40,14 +42,24 @@ var messageInput = document.querySelector('#messageInput');
 var createEventButton = document.querySelector('#addEvent');
 var guestListArray = [];
 
+
+
+
+
+
 //event listing
 var eventsPage = document.getElementById('eventsPage');
+
 
 // constructors
 
 
-function ProjectEvent(name, eventType, host, startDateTime, endDateTime, guestList, location) {
-    var optMessage = arguments.length <= 7 || arguments[7] === undefined ? '' : arguments[7];
+
+function ProjectEvent(name, eventType, host, startDateTime, endDateTime, guestList, location, optMessage = '') {
+
+
+
+
 
 
     this.eventOrAccount = 'Event';
@@ -59,7 +71,11 @@ function ProjectEvent(name, eventType, host, startDateTime, endDateTime, guestLi
     this.guestList = guestList;
     this.location = location;
     this.optMessage = optMessage;
+
+
+
 }
+
 
 function Account(name, email, password, birthdate, work, position, workLike) {
 
@@ -71,26 +87,32 @@ function Account(name, email, password, birthdate, work, position, workLike) {
     this.work = work;
     this.position = position;
     this.workLike = workLike;
+
+
 }
+
+
 
 //event listeners
 
 
-showCreateEventForm.addEventListener('click', function () {
+showCreateEventForm.addEventListener('click', function() {
     createEventForm.style.display = 'block';
     image.style.display = 'none';
     eventsPage.style.display = 'none';
     registerForm.style.display = 'none';
 }, false);
 
-showRegister.addEventListener('click', function () {
+
+showRegister.addEventListener('click', function() {
     createEventForm.style.display = 'none';
     image.style.display = 'none';
     eventsPage.style.display = 'none';
     registerForm.style.display = 'block';
 }, false);
 
-showEvents.addEventListener('click', function () {
+
+showEvents.addEventListener('click', function() {
     createEventForm.style.display = 'none';
     image.style.display = 'none';
     registerForm.style.display = 'none';
@@ -98,59 +120,72 @@ showEvents.addEventListener('click', function () {
     createCards();
 }, false);
 
-createAccountButton.addEventListener('click', function () {
-    var name = nameInput.value;
-    var email = emailInput.value;
-    var password = passwordInput.value;
-    var birthday = birthdayInput.value;
-    var employer = employerInput.value;
-    var position = positionInput.value;
-    var loveJob = loveJobInput.value;
-    var newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
+
+createAccountButton.addEventListener('click', function() {
+    let name = nameInput.value;
+    let email = emailInput.value;
+    let password = passwordInput.value;
+    let birthday = birthdayInput.value;
+    let employer = employerInput.value;
+    let position = positionInput.value;
+    let loveJob = loveJobInput.value;
+    let newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
     localStorage.setItem(name, JSON.stringify(newAccount));
     console.dir(JSON.parse(localStorage.getItem(name)) instanceof Account);
 }, false);
 
-loveJobInput.addEventListener('input', function () {
+
+
+
+loveJobInput.addEventListener('input', function() {
     loveJobOutput.innerHTML = this.value;
 }, false);
 
-addGuestButton.addEventListener('click', function () {
-    var formGuestLabel = document.querySelector('label[for="guestInput"]');
-    var guestList = document.querySelector('label[for="guestInput"] ul');
-    var guestName = formGuestLabel.querySelector('input').value;
+
+
+addGuestButton.addEventListener('click', function() {
+    let formGuestLabel = document.querySelector('label[for="guestInput"]');
+    let guestList = document.querySelector('label[for="guestInput"] ul');
+    let guestName = formGuestLabel.querySelector('input').value;
     // this is to prevent an empty li from being created by Mutation Observer!!
     if (guestName === "") {
         return;
     }
-    var newItem = document.createElement('li');
+    let newItem = document.createElement('li');
     newItem.innerHTML = guestName;
     guestList.appendChild(newItem);
     formGuestLabel.querySelector('input').value = '';
     guestListArray.push(guestName);
 }, false);
 
-passwordInput.addEventListener('input', function () {
 
-    var password = this.value;
-    var message = '';
-    var passwordTip = document.querySelector('#passwordTip1');
+
+passwordInput.addEventListener('input', function() {
+
+    let password = this.value;
+    let message = '';
+    let passwordTip = document.querySelector('#passwordTip1');
 
     if (!/[a-z]/.test(password)) {
         message = ' Please add a lower case letter to the password.';
         this.setCustomValidity(message);
+
     } else if (!/[A-Z]/.test(password)) {
         message = ' Please add a upper case letter to the password.';
         this.setCustomValidity(message);
+
     } else if (!/[0-9]/.test(password)) {
         message = ' Please add a number to the password.';
         this.setCustomValidity(message);
+
     } else if (!/[&%$*?!]/.test(password)) {
         message = ' Please add one of the following characters: &%$*?! .';
         this.setCustomValidity(message);
+
     } else if (!/.{10}/.test(password)) {
         message = ' The password should be at least 10 characters long.';
         this.setCustomValidity(message);
+
     } else {
         message = 'Great password!';
         this.setCustomValidity('');
@@ -162,20 +197,24 @@ passwordInput.addEventListener('input', function () {
         passwordTip.style.color = "red";
     }
 
+
     passwordTip.innerHTML = message;
+
 });
 
-secondPasswordInput.addEventListener('input', function () {
-    var secondPasswordInput = this.value;
-    var passwordInput = document.querySelector('#passwordInput');
-    var password = passwordInput.value;
-    var passwordTip = document.querySelector('#passwordTip2');
-    var message = '';
+
+secondPasswordInput.addEventListener('input', function() {
+    let secondPasswordInput = this.value;
+    let passwordInput = document.querySelector('#passwordInput');
+    let password = passwordInput.value;
+    let passwordTip = document.querySelector('#passwordTip2');
+    let message = '';
 
     if (secondPasswordInput !== password) {
         message = 'The two passwords have to match.';
         this.setCustomValidity(message);
         passwordTip.style.color = "red";
+
     } else if (secondPasswordInput === password && passwordInput.validity.valid == false) {
 
         message = 'Passwords match, but neither is valid.';
@@ -190,29 +229,37 @@ secondPasswordInput.addEventListener('input', function () {
     passwordTip.innerHTML = message;
 });
 
-createEventButton.addEventListener('click', function () {
+
+createEventButton.addEventListener('click', function() {
+
 
     if (!guestListArray.length > 0) {
         guestInput.setCustomValidity('You need at least one guest');
     } else {
 
         guestInput.setCustomValidity('');
+
     }
+
 
     if (createEventForm.checkValidity()) {
 
-        var name = eventInput.value;
-        var type = typeEventInput.value;
-        var host = hostInput.value;
-        var startTime = startTimeInput.value;
-        var endTime = endTimeInput.value;
-        var guests = guestListArray;
-        var location = locationInput.value;
-        var message = messageInput.value;
-        var event = new ProjectEvent(name, type, host, startTime, endTime, guests, location, message);
+
+        let name = eventInput.value;
+        let type = typeEventInput.value;
+        let host = hostInput.value;
+        let startTime = startTimeInput.value;
+        let endTime = endTimeInput.value;
+        let guests = guestListArray;
+        let location = locationInput.value;
+        let message = messageInput.value;
+        let event = new ProjectEvent(name, type, host, startTime, endTime, guests, location, message);
         localStorage.setItem(name, JSON.stringify(event));
         createNewEventCard(event);
+
+
     }
+
 
     // eventInput.value = '';
     // typeEventInput.value = '';
@@ -229,68 +276,91 @@ createEventButton.addEventListener('click', function () {
     // createEventForm.style.display='none';
 });
 
+
 function createCards() {
 
-    var isEvents = false;
+    let isEvents = false;
 
-    for (var prop in localStorage) {
+    for (let prop in localStorage) {
+
 
         // loop through every key value pair in localStorage
         try {
 
             // try to parse the value ... you can only parse stringified objects
-            var parsedObject = JSON.parse(localStorage[prop]);
+            let parsedObject = JSON.parse(localStorage[prop]);
+
 
             // if the parsed object is an Event object, set isEvents to true
             if (parsedObject['eventOrAccount'] === "Event") {
 
                 isEvents = true;
+
             }
+
+
+
+
+
         } catch (e) {
 
             console.log('a value that is not a stringified object is in local Storage');
+
         }
     }
     eventsPage.innerHTML = "";
 
+
+
+
+
+
     if (!isEvents) {
         eventsPage.innerHTML = '<h3>You need to first create an event before you can see any!</h3>';
     } else {
-        for (var object in localStorage) {
+        for (let object in localStorage) {
 
-            var _parsedObject = JSON.parse(localStorage[object]);
+            let parsedObject = JSON.parse(localStorage[object]);
 
-            if (_parsedObject['eventOrAccount'] === 'Event') {
+            if (parsedObject['eventOrAccount'] === 'Event') {
 
-                createNewEventCard(_parsedObject);
+                createNewEventCard(parsedObject);
+
             }
+
         }
     }
 }
 
+
 function createNewEventCard(eventInfo) {
-    var newCard = document.createElement('section');
+    let newCard = document.createElement('section');
     newCard.className = "card";
 
     // creates the HTML for a new card
 
-    var newCardHTML = '<p class="eventName">' + eventInfo.name + '</p>';
-    newCardHTML += '<p class="eventHost"><span class="header">Host:</span><span class="info">' + eventInfo.host + '</span></p>';
-    newCardHTML += '<p class="eventType"><span class="header">Type of Event:</span><span class="info">' + eventInfo.eventType + '</span></p>';
-    newCardHTML += '<p class="startTime"><span class="header">Start Time:</span><span class="info">' + formatTime(eventInfo.startDateTime) + '</span></p>';
-    newCardHTML += '<p class="endTime"><span class="header">End Time:</span><span class="info">' + formatTime(eventInfo.endDateTime) + '</span></p>';
-    newCardHTML += '<p class="location"><span class="header">Location:</span><span class="info"> ' + eventInfo.location + '</span></p>';
-    newCardHTML += '<p class="whosComing"><span class="header">Who\'s Coming:</span><ul class="info">';
-    for (var i = 0; i < eventInfo.guestList.length; i++) {
-        newCardHTML += '<li>' + eventInfo.guestList[i] + '</li>';
+    let newCardHTML = `<p class="eventName">${eventInfo.name}</p>`;
+    newCardHTML += `<p class="eventHost"><span class="header">Host:</span><span class="info">${eventInfo.host}</span></p>`;
+    newCardHTML += `<p class="eventType"><span class="header">Type of Event:</span><span class="info">${eventInfo.eventType}</span></p>`;
+    newCardHTML += `<p class="startTime"><span class="header">Start Time:</span><span class="info">${formatTime(eventInfo.startDateTime)}</span></p>`;
+    newCardHTML += `<p class="endTime"><span class="header">End Time:</span><span class="info">${formatTime(eventInfo.endDateTime)}</span></p>`;
+    newCardHTML += `<p class="location"><span class="header">Location:</span><span class="info"> ${eventInfo.location}</span></p>`;
+    newCardHTML += `<p class="whosComing"><span class="header">Who's Coming:</span><ul class="info">`;
+    for (let i = 0; i < eventInfo.guestList.length; i++) {
+        newCardHTML += `<li>${eventInfo.guestList[i]}</li>`;
+
     }
-    newCardHTML += '</ul></p>';
+    newCardHTML += `</ul></p>`;
     if (eventInfo.optMessage !== '') {
-        newCardHTML += '<p class="message">"' + eventInfo.optMessage + '"</p>';
+        newCardHTML += `<p class="message">"${eventInfo.optMessage}"</p>`;
     }
     newCard.innerHTML = newCardHTML;
     eventsPage.appendChild(newCard);
 }
+
+
+
+
 
 // find the input elements whose parent label has a span elements
 
@@ -301,82 +371,75 @@ function createNewEventCard(eventInfo) {
 
 var dataTips = document.querySelectorAll('[data-validate-tip]');
 
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+for (let dataTip of dataTips) {
 
-try {
-    var _loop = function _loop() {
-        var dataTip = _step.value;
+    let tipLabel = dataTip.parentNode;
+    let labelsInput = tipLabel.querySelector('input');
+    let labelsSpan = tipLabel.querySelector('span');
 
+    labelsInput.addEventListener('blur', function() {
 
-        var tipLabel = dataTip.parentNode;
-        var labelsInput = tipLabel.querySelector('input');
-        var labelsSpan = tipLabel.querySelector('span');
-
-        labelsInput.addEventListener('blur', function () {
-
-            if (this.validationMessage !== '') {
-                labelsSpan.innerHTML = this.validationMessage;
-            } else {
-                labelsSpan.innerHTML = '';
-            }
-        }, false);
-
-        labelsInput.addEventListener('input', function () {
-
+        if (this.validationMessage !== '') {
+            labelsSpan.innerHTML = this.validationMessage;
+        } else {
             labelsSpan.innerHTML = '';
-        }, false);
-    };
 
-    for (var _iterator = dataTips[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        _loop();
-    }
-} catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-} finally {
-    try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
         }
-    } finally {
-        if (_didIteratorError) {
-            throw _iteratorError;
-        }
-    }
+    }, false);
+
+    labelsInput.addEventListener('input', function() {
+
+        labelsSpan.innerHTML = '';
+    }, false);
+
 }
 
-guestInput.addEventListener('blur', function () {
+
+guestInput.addEventListener('blur', function() {
 
     if (guestListArray.length == 0 && this.value == "") {
 
         guestInput.parentNode.querySelector('span').innerHTML = 'You need to have at least one guest.';
+
     } else {
 
         guestInput.parentNode.querySelector('span').innerHTML = '';
     }
+
+
+
 }, false);
 
-guestInput.addEventListener('input', function () {
+
+guestInput.addEventListener('input', function() {
     guestInput.parentNode.querySelector('span').innerHTML = '';
+
 }, false);
 
-guestInput.addEventListener('keydown', function (e) {
+
+
+guestInput.addEventListener('keydown', function(e) {
 
     if (e.keyCode == 13) {
 
-        var formGuestLabel = document.querySelector('label[for="guestInput"]');
-        var guestList = document.querySelector('label[for="guestInput"] ul');
-        var guestName = formGuestLabel.querySelector('input').value;
+
+        let formGuestLabel = document.querySelector('label[for="guestInput"]');
+        let guestList = document.querySelector('label[for="guestInput"] ul');
+        let guestName = formGuestLabel.querySelector('input').value;
         // this is to prevent an empty li from being created by Mutation Observer!!
         if (guestName === "") {
             return;
         }
-        var newItem = document.createElement('li');
+        let newItem = document.createElement('li');
         newItem.innerHTML = guestName;
         guestList.appendChild(newItem);
         formGuestLabel.querySelector('input').value = '';
         guestListArray.push(guestName);
+
+
+
+
     }
+
 }, false);
+    

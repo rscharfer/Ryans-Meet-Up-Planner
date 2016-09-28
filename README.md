@@ -41,7 +41,7 @@ $ npm install
 After all of the modules from the package.json file have installed, run the following command: 
 
 ```
-gulp watch
+$ gulp watch
 ```
 This will allow you to live edit the following files and immediately see the results on any device in your wireless network:
 

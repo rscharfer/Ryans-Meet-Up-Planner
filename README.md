@@ -49,7 +49,7 @@ This will allow you to live edit the following files and immediately see the res
 * any file in the `ecma6` folder
 * any file in the `sass` folder
 
-Additionally, you can safely write with ECMA Script 6 and SASS, and your code will be converted into (almost) all-browser compatible ECMA Script 5 and CSS.
+Additionally, you can safely write with ECMA Script 6 and SASS, and your code will be __automatically__ be converted into ECMA Script 5 and CSS.
 
 
 

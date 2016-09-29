@@ -15,7 +15,7 @@ gulp.task('watch',['startBrowser'],function(){
 
 	gulp.watch('./index.html',['browserUpdate']);
 
-	gulp.watch('./ecma6/**/*.js',['browserUpdate']);
+	gulp.watch('./ecma6/**/*.js',['js','browserUpdate']);
 	
 
 

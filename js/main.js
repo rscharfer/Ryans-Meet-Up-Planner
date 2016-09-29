@@ -380,3 +380,8 @@ guestInput.addEventListener('keydown', function (e) {
         guestListArray.push(guestName);
     }
 }, false);
+
+function initAutocomplete() {
+
+    console.log('inited');
+}

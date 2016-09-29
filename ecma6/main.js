@@ -443,3 +443,10 @@ guestInput.addEventListener('keydown', function(e) {
 
 }, false);
     
+
+
+    function initAutocomplete(){
+
+
+        console.log('inited');
+    }

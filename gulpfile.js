@@ -12,7 +12,10 @@ var sass = require('gulp-sass');
 var babel=require('gulp-babel');
 var concat = require('gulp-concat');  
 var rename = require('gulp-rename');  
-var uglify = require('gulp-uglify');  
+var uglify = require('gulp-uglify'); 
+var cleanCSS = require('gulp-clean-css');
+ 
+
 
 
 gulp.task('watch',['startBrowser'],function(){
@@ -30,9 +33,18 @@ gulp.task('watch',['startBrowser'],function(){
 
 
 gulp.task('styles',function(){
-	gulp.src('./sass/**/*.scss')
-	.pipe(sass().on('error',sass.logError))
-	.pipe(gulp.dest('./css'));
+	return gulp.src('./src/sass/**/*.scss')
+	.pipe(sass({outputStyle:'compressed'}).on('error',sass.logError))
+	.pipe(gulp.dest('./dist/css'));
+});
+
+
+gulp.task('vendors',function(){
+
+	return gulp.src(['./src/css/vendors/normalize.css','./src/css/vendors/main.css'])
+			.pipe(concat('vendor.css'))
+			.pipe(cleanCSS({compatibility: 'ie8'}))
+			.pipe(gulp.dest('./dist/css'));
 });
 
 // gulp.task('js', () => {
@@ -59,11 +71,11 @@ gulp.task('startBrowser',function(){
 
 
 gulp.task('scripts',function(){
-	gulp.src('./src/ecma6/**/*.js')
+	gulp.src(['./src/ecma6/formatTime.js','./src/ecma6/main.js'])
+	.pipe(concat('scripts.js'))
 	.pipe(babel({
             presets: ['es2015']
         }))
-	.pipe(concat('scripts.js'))
 	.pipe(gulp.dest('./dist/js'))
 	.pipe(rename('scripts.min.js'))
 	.pipe(uglify())

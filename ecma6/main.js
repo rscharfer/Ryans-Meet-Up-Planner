@@ -444,9 +444,15 @@ guestInput.addEventListener('keydown', function(e) {
 }, false);
     
 
+  var autocomplete;
 
     function initAutocomplete(){
 
+  autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById('locationInput')),
+      {types: ['geocode']});
 
-        console.log('inited');
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  // autocomplete.addListener('place_changed', fillInAddress);
     }

@@ -8,9 +8,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- build:css -->
     <link rel="stylesheet" href="./css/vendors/normalize.css">
     <link rel="stylesheet" href="./css/vendors/main.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <!-- endbuild -->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 </head>
@@ -40,7 +42,7 @@
                 <input type="text" id="nameInput" placeholder="Hans Down" required autofocus>
                 <br><span data-validate-tip id="nameTip"></span>
             </label>
-             <br>
+            <br>
             <label for="emailInput">
                 <br>
                 <h5>What is your email address?</h5>
@@ -56,7 +58,7 @@
                 <input type="password" id="passwordInput" placeholder="**********" required>
                 <br><span id="passwordTip1"></span>
             </label>
-           <br>
+            <br>
             <label for="secondPasswordInput">
                 <br>
                 <h5>Please type the password again</h5>
@@ -93,7 +95,7 @@
                     <input type="range" value="5" step="1" min="1" max="10" id="loveJobInput"><span><b id="output">5</b></span>
                 </div>
             </label>
-            <br> 
+            <br>
             <button id="createAccountButton" type="submit">Create Account</button>
         </form>
         <!-- Create New Event Form -->
@@ -105,7 +107,7 @@
                 <input type="text" id="eventInput" placeholder="Mary and Ben's Wedding" required autofocus>
                 <br><span data-validate-tip id="eventTip"></span>
             </label>
-             <br>
+            <br>
             <label for="typeEventInput">
                 <br>
                 <h5>What type of event is it?</h5>
@@ -127,14 +129,14 @@
                 <h5>Who is the host of the event?</h5>
                 <br>
                 <input type="text" id="hostInput" placeholder="Mary's Dad" required>
-                 <br><span data-validate-tip id="hostTip"></span>
+                <br><span data-validate-tip id="hostTip"></span>
             </label>
             <br>
             <label for="startTimeInput">
                 <br>
                 <h5>When will the event start?</h5>
                 <br>
-                <input type="datetime-local" id="startTimeInput" placeholder="January 5th, 2016 9AM" required>  
+                <input type="datetime-local" id="startTimeInput" placeholder="January 5th, 2016 9AM" required>
                 <br><span data-validate-tip id="startTip"></span>
             </label>
             <br>
@@ -145,7 +147,7 @@
                 <input type="datetime-local" id="endTimeInput" placeholder="January 5th, 2016 11AM" required>
                 <br><span data-validate-tip id="endTip"></span>
             </label>
-           <br>
+            <br>
             <label for="guestInput">
                 <br>
                 <h5>Who do you want to invite?</h5>
@@ -173,30 +175,29 @@
                 <br>
             </label>
             <br>
-            
-                <button id="addEvent" type="submit">Add Event</button>
-            
+            <button id="addEvent" type="submit">Add Event</button>
             <br>
         </form>
         <!--  Events Container -->
         <div id="eventsPage" style="display:none">
-
             <section class="card">
                 <p class="eventName">Mary's Wedding</p>
                 <p class="eventHost"><span class="header">Host:</span><span class="info">Ryan Scharfer</span></p>
                 <p class="startTime"><span class="header">Start Time:</span><span class="info">Jan 5th, 1982 3:45PM</span></p>
                 <p class="endTime"><span class="header">Start Time:</span><span class="info">Jan 5th, 1982 3:45PM</span></p>
-                <p class="whosComing"><span class="header">Who's Coming:</span><ul class="info"><li>Ryan Scharfer</li><li>Tali Faris</li><li>Travis Hylen</li></ul></p>
+                <p class="whosComing"><span class="header">Who's Coming:</span>
+                    <ul class="info">
+                        <li>Ryan Scharfer</li>
+                        <li>Tali Faris</li>
+                        <li>Travis Hylen</li>
+                    </ul>
+                </p>
                 <p class="location"><span class="header">Location:</span><span class="info">Lerchenfeld 9 22081 Hamburg, Germany</span></p>
                 <p class="message">"Please remember to shower!"</p>
-
-
             </section>
-            
         </div>
     </div>
     <!--  End of Main Container -->
-   
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <!--     <script>
     (function(b, o, i, l, e, r) {
@@ -214,11 +215,11 @@
     ga('create', 'UA-XXXXX-X', 'auto');
     ga('send', 'pageview');
     </script> -->
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtcjVkiyoTu9W6rVGm1l9nhWUUlVLVbso&signed_in=true&libraries=places&callback=initAutocomplete"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtcjVkiyoTu9W6rVGm1l9nhWUUlVLVbso&signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
+    <!-- build:js -->
     <script src="./js/formatTime.js"></script>
     <script src="./js/main.js"></script>
-    
+    <!-- endbuild -->
 </body>
 
 </html>

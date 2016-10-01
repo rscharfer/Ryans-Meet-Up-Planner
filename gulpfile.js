@@ -10,10 +10,10 @@ var gulp = require('gulp');
 var browser = require('browser-sync').create();
 var sass = require('gulp-sass');
 var babel=require('gulp-babel');
-var concat = require('gulp-concat');  
-var rename = require('gulp-rename');  
+var concat = require('gulp-concat');   
 var uglify = require('gulp-uglify'); 
 var cleanCSS = require('gulp-clean-css');
+var HTMLreplace = require('gulp-html-replace');
  
 
 
@@ -111,7 +111,7 @@ gulp.task('serve',['startDevBrowser'],function(){
 
 	
 
-	gulp.watch('./src/index.html',['browserUpdate']);
+	gulp.watch('./src/index.html',['updateHTML','browserUpdate']);
 
 	gulp.watch('./src/ecma6/**/*.js',['babelize','browserUpdate']);
 	
@@ -144,6 +144,18 @@ gulp.task('jsDistribute',function(){
 gulp.task('serve:dist',['startDevBrowser'],function(){
 
 	
+});
+
+
+gulp.task('updateHTML',function(){
+
+
+	gulp.src('./src/index.html')
+	.pipe(HTMLreplace({
+        'css': './dist/css/styles.css',
+        'js': './dist/js/scripts.min.js'
+    }))
+	.pipe(gulp.dest('./dist'));
 });
 
 

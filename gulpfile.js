@@ -104,6 +104,7 @@ gulp.task('unsass',function(){
 	.pipe(gulp.dest('./src/css'));
 
 
+
 });
 
 
@@ -113,15 +114,15 @@ gulp.task('serve',['startDevBrowser'],function(){
 
 	gulp.watch('./src/index.html',['updateHTML','browserUpdate']);
 
-	gulp.watch('./src/ecma6/**/*.js',['babelize','browserUpdate']);
+	gulp.watch('./src/ecma6/**/*.js',['jsDistribute','browserUpdate']);
 	
 
 
-	gulp.watch('./src/sass/**/*.scss', ['unsass','browserUpdate']);
+	gulp.watch('./src/sass/**/*.scss', ['cssDistribute','browserUpdate']);
 });
 
 
-gulp.task('cssDistribute',function(){
+gulp.task('cssDistribute',['unsass'],function(){
 
 	gulp.src(['./src/css/vendors/normalize.css','./src/css/vendors/main.css','./src/css/styles.css'])
 	.pipe(concat('styles.css'))
@@ -131,7 +132,7 @@ gulp.task('cssDistribute',function(){
 });
 
 
-gulp.task('jsDistribute',function(){
+gulp.task('jsDistribute',['babelize'],function(){
 
 	gulp.src(['./src/js/formatTime.js','./src/js/main.js'])
 	.pipe(concat('scripts.min.js'))

@@ -1,4 +1,4 @@
-$optionalColor: #646464;
+
 body {
     /*	margin-left: .5em;
 	margin-right: 5.0em;*/
@@ -10,8 +10,8 @@ h5 {
 }
 
 span {
-    font-size: 0.83em;
-    color: $optionalColor;
+    font-size: .83em;
+    color: #646464;
 }
 
 #lovejobspan {
@@ -204,8 +204,10 @@ span[data-validate-tip]{
 }
 
 
+
 :invalid {
   box-shadow: none;
+  
 }
 
 :-moz-submit-invalid {
@@ -231,3 +233,17 @@ span[data-validate-tip]{
         right: 0px;
     }
 }
+
+
+.checkmark{
+
+    background:url("../img/checkmark.png") no-repeat;
+    background-size:contain;
+    width:30px;
+    height:26px;
+    display:inline-block;
+    margin-left:10px;
+    opacity: 0;
+    transition: opacity 0.75s;
+}
+

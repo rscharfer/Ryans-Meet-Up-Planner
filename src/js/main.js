@@ -312,7 +312,8 @@ try {
 
         var tipLabel = dataTip.parentNode;
         var labelsInput = tipLabel.querySelector('input');
-        var labelsSpan = tipLabel.querySelector('span');
+        var labelsSpan = tipLabel.querySelector('span:not(.checkmark)');
+        var checkmark = tipLabel.querySelector('.checkmark');
 
         labelsInput.addEventListener('blur', function () {
 
@@ -320,6 +321,7 @@ try {
                 labelsSpan.innerHTML = this.validationMessage;
             } else {
                 labelsSpan.innerHTML = '';
+                checkmark.style.opacity = 1;
             }
         }, false);
 
@@ -381,6 +383,8 @@ guestInput.addEventListener('keydown', function (e) {
     }
 }, false);
 
+console.log('hello');
+
 var autocomplete;
 
 function initAutocomplete() {
@@ -391,3 +395,24 @@ function initAutocomplete() {
     // fields in the form.
     // autocomplete.addListener('place_changed', fillInAddress);
 }
+
+// function setCheckmarks(){
+
+//     console.log('function has been run');
+
+//     let spans = document.querySelectorAll('.checkmark');
+//     for (let span of spans){
+//         span.innerHTML="hello"
+//         span.style.background = 'url("./img/checkmark.png") repeat 0 0 ';
+//     }
+
+// }
+
+// setCheckmarks();
+
+
+document.querySelector('#nameInput').addEventListener('click', function () {
+
+    var box = document.querySelector('.checkmark');
+    box.style.visibility = "visible";
+}, false);

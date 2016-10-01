@@ -189,6 +189,7 @@ passwordInput.addEventListener('input', function() {
     } else {
         message = 'Great password!';
         this.setCustomValidity('');
+        
     }
 
     if (this.validity.valid == true) {
@@ -375,7 +376,8 @@ for (let dataTip of dataTips) {
 
     let tipLabel = dataTip.parentNode;
     let labelsInput = tipLabel.querySelector('input');
-    let labelsSpan = tipLabel.querySelector('span');
+    let labelsSpan = tipLabel.querySelector('span:not(.checkmark)');
+    let checkmark = tipLabel.querySelector('.checkmark');
 
     labelsInput.addEventListener('blur', function() {
 
@@ -383,6 +385,8 @@ for (let dataTip of dataTips) {
             labelsSpan.innerHTML = this.validationMessage;
         } else {
             labelsSpan.innerHTML = '';
+            checkmark.style.opacity=1;
+
 
         }
     }, false);
@@ -442,6 +446,9 @@ guestInput.addEventListener('keydown', function(e) {
     }
 
 }, false);
+
+
+console.log('hello');
     
 
   var autocomplete;
@@ -456,3 +463,29 @@ guestInput.addEventListener('keydown', function(e) {
   // fields in the form.
   // autocomplete.addListener('place_changed', fillInAddress);
     }
+
+
+
+
+// function setCheckmarks(){
+
+//     console.log('function has been run');
+
+//     let spans = document.querySelectorAll('.checkmark');
+//     for (let span of spans){
+//         span.innerHTML="hello"
+//         span.style.background = 'url("./img/checkmark.png") repeat 0 0 ';
+//     }
+    
+// }
+
+// setCheckmarks();
+
+
+document.querySelector('#nameInput').addEventListener('click',function(){
+
+    let box = document.querySelector('.checkmark');
+    box.style.visibility = "visible";
+
+
+},false);

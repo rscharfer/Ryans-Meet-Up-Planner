@@ -168,7 +168,7 @@ startTimeInput.addEventListener('blur',function(){
 
 
     let inputValue = this.value;
-    debugger;
+   
 
     if(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(inputValue)){
 
@@ -203,6 +203,23 @@ startTimeInput.addEventListener('blur',function(){
 },false);
 
 
+
+var inputs = document.getElementsByTagName('inputs');
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('invalid', function(e) {
+        e.preventDefault();
+        //Possibly implement your own here.
+    }, true);
+}
+
+
+var forms = document.getElementsByTagName('form');
+for (let i = 0; i < forms.length; i++) {
+    forms[i].addEventListener('invalid', function(e) {
+        e.preventDefault();
+        //Possibly implement your own here.
+    }, true);
+}
 
 endTimeInput.addEventListener('blur',function(){
 

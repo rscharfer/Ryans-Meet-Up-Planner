@@ -135,7 +135,6 @@ addGuestButton.addEventListener('click', function () {
 startTimeInput.addEventListener('blur', function () {
 
     var inputValue = this.value;
-    debugger;
 
     if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(inputValue)) {
 
@@ -157,6 +156,22 @@ startTimeInput.addEventListener('blur', function () {
         }
     }
 }, false);
+
+var inputs = document.getElementsByTagName('inputs');
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('invalid', function (e) {
+        e.preventDefault();
+        //Possibly implement your own here.
+    }, true);
+}
+
+var forms = document.getElementsByTagName('form');
+for (var _i = 0; _i < forms.length; _i++) {
+    forms[_i].addEventListener('invalid', function (e) {
+        e.preventDefault();
+        //Possibly implement your own here.
+    }, true);
+}
 
 endTimeInput.addEventListener('blur', function () {
 
@@ -336,8 +351,8 @@ function createNewEventCard(eventInfo) {
     newCardHTML += '<p class="endTime"><span class="header">End Time:</span><span class="info">' + formatTime(eventInfo.endDateTime) + '</span></p>';
     newCardHTML += '<p class="location"><span class="header">Location:</span><span class="info"> ' + eventInfo.location + '</span></p>';
     newCardHTML += '<p class="whosComing"><span class="header">Who\'s Coming:</span><ul class="info">';
-    for (var i = 0; i < eventInfo.guestList.length; i++) {
-        newCardHTML += '<li>' + eventInfo.guestList[i] + '</li>';
+    for (var _i2 = 0; _i2 < eventInfo.guestList.length; _i2++) {
+        newCardHTML += '<li>' + eventInfo.guestList[_i2] + '</li>';
     }
     newCardHTML += '</ul></p>';
     if (eventInfo.optMessage !== '') {

@@ -61,26 +61,58 @@ gulp.task('browserUpdate',function(){
 
 });
 
-gulp.task('startBrowser',function(){
+gulp.task('startDevBrowser',function(){
 
 	browser.init({
-		server:'./',
+		server:'./src',
 		debug:true
 	});
 });
 
 
-gulp.task('scripts',function(){
-	gulp.src(['./src/ecma6/formatTime.js','./src/ecma6/main.js'])
-	.pipe(concat('scripts.js'))
+gulp.task('babelize',function(){
+	return gulp.src(['./src/ecma6/formatTime.js','./src/ecma6/main.js'])
 	.pipe(babel({
             presets: ['es2015']
         }))
-	.pipe(gulp.dest('./dist/js'))
-	.pipe(rename('scripts.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('./dist/js'));
+	.pipe(gulp.dest('./src/js'));
 });
+
+
+// gulp.task('unsass',function(){
+
+// 	 gulp.src('./src/sass/**/.css')
+// 	.pipe(sass()).on('error',sass.logError)
+// 	.pipe(gulp.dest('./src/css'));
+
+
+// });
+
+gulp.task('unsass',function(){
+
+	 gulp.src('./src/sass/**/*.scss')
+	.pipe(sass()).on('error',sass.logError)
+	.pipe(gulp.dest('./src/css'));
+
+
+});
+
+
+gulp.task('serve',['startDevBrowser'],function(){
+
+	
+
+	gulp.watch('./src/index.html',['browserUpdate']);
+
+	gulp.watch('./src/ecma6/**/*.js',['babelize','browserUpdate']);
+	
+
+
+	gulp.watch('./src/sass/**/*.scss', ['unsass','browserUpdate']);
+});
+
+
+
 
 
 

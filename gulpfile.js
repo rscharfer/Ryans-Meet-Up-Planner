@@ -18,18 +18,18 @@ var HTMLreplace = require('gulp-html-replace');
 
 
 
-gulp.task('watch',['startBrowser'],function(){
+// gulp.task('watch',['startBrowser'],function(){
 
 	
 
-	gulp.watch('./index.html',['browserUpdate']);
+// 	gulp.watch('./index.html',['browserUpdate']);
 
-	gulp.watch('./src/ecma6/**/*.js',['scripts','browserUpdate']);
+// 	gulp.watch('./src/ecma6/**/*.js',['scripts','browserUpdate']);
 	
 
 
-	gulp.watch('./sass/**/*.scss', ['styles','browserUpdate']);
-});
+// 	gulp.watch('./sass/**/*.scss', ['styles','browserUpdate']);
+// });
 
 
 gulp.task('styles',function(){

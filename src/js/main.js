@@ -132,6 +132,59 @@ addGuestButton.addEventListener('click', function () {
     formGuestLabel.querySelector('#guestTip').innerHTML = '';
 }, false);
 
+startTimeInput.addEventListener('blur', function () {
+
+    var inputValue = this.value;
+    debugger;
+
+    if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(inputValue)) {
+
+        var year = inputValue.slice(0, 4);
+        var month = inputValue.slice(5, 7);
+        var day = inputValue.slice(8, 10);
+        var hour = inputValue.slice(11, 13);
+        var minutes = inputValue.slice(14, 16);
+        var dateObject = new Date(year, month, day, hour, minutes);
+
+        if (dateObject < new Date()) {
+
+            startTimeInput.setCustomValidity('Events cannot start in the past.');
+            endTimeInput.setCustomValidity('Events cannot start in the past.');
+        } else {
+
+            startTimeInput.setCustomValidity('');
+            endTimeInput.setCustomValidity('');
+        }
+    }
+}, false);
+
+endTimeInput.addEventListener('blur', function () {
+
+    var times = [startTimeInput.value, this.value];
+    var dateObjects = [];
+
+    if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(startTimeInput.value) && /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(endTimeInput.value)) {
+
+        times.forEach(function (currentValue, index) {
+
+            var year = currentValue.slice(0, 4);
+            var month = currentValue.slice(5, 7);
+            var day = currentValue.slice(8, 10);
+            var hour = currentValue.slice(11, 13);
+            var minutes = currentValue.slice(14, 16);
+            var dateObject = new Date(year, month, day, hour, minutes);
+            dateObjects[index] = dateObject;
+        });
+
+        if (dateObjects[1] <= dateObjects[0]) {
+
+            endTimeInput.setCustomValidity('The end time must be later than the start time.');
+        } else {
+            endTimeInput.setCustomValidity('');
+        }
+    }
+});
+
 passwordInput.addEventListener('input', function () {
 
     var password = this.value;
@@ -440,9 +493,3 @@ function initAutocomplete() {
 
     autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationInput'), { types: ['geocode'] });
 }
-
-document.querySelector('#nameInput').addEventListener('click', function () {
-
-    var box = document.querySelector('.checkmark');
-    box.style.visibility = "visible";
-}, false);

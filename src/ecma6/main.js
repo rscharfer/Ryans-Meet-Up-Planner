@@ -131,7 +131,7 @@ createAccountButton.addEventListener('click', function() {
     let loveJob = loveJobInput.value;
     let newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
     localStorage.setItem(name, JSON.stringify(newAccount));
- 
+
 }, false);
 
 
@@ -157,9 +157,107 @@ addGuestButton.addEventListener('click', function() {
     formGuestLabel.querySelector('input').value = '';
     guestListArray.push(guestName);
     let checkmark = formGuestLabel.querySelector('.checkmark');
-    checkmark.style.opacity=1;
-    formGuestLabel.querySelector('#guestTip').innerHTML='';
+    checkmark.style.opacity = 1;
+    formGuestLabel.querySelector('#guestTip').innerHTML = '';
 }, false);
+
+
+
+
+startTimeInput.addEventListener('blur',function(){
+
+
+    let inputValue = this.value;
+    debugger;
+
+    if(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(inputValue)){
+
+            let year = inputValue.slice(0, 4);
+            let month = inputValue.slice(5, 7);
+            let day = inputValue.slice(8, 10);
+            let hour = inputValue.slice(11, 13);
+            let minutes = inputValue.slice(14, 16);
+            let dateObject = new Date(year, month, day, hour, minutes);
+
+
+            if (dateObject<new Date()){
+
+                startTimeInput.setCustomValidity('Events cannot start in the past.');
+                endTimeInput.setCustomValidity('Events cannot start in the past.');
+
+            }
+
+            else{
+
+                startTimeInput.setCustomValidity('');
+                endTimeInput.setCustomValidity('');
+
+
+            }
+
+    }
+
+
+
+
+},false);
+
+
+
+endTimeInput.addEventListener('blur',function(){
+
+
+
+    let times = [startTimeInput.value, this.value];
+    let dateObjects = [];
+
+   
+
+    
+    if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(startTimeInput.value)&&/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(endTimeInput.value)){
+
+       
+
+        times.forEach(function(currentValue,index){
+
+            let year = currentValue.slice(0, 4);
+            let month = currentValue.slice(5, 7);
+            let day = currentValue.slice(8, 10);
+            let hour = currentValue.slice(11, 13);
+            let minutes = currentValue.slice(14, 16);
+            let dateObject = new Date(year, month, day, hour, minutes);
+            dateObjects[index] = dateObject;
+
+        });
+
+    
+
+        if (dateObjects[1]<=dateObjects[0]){
+
+         
+
+            endTimeInput.setCustomValidity('The end time must be later than the start time.');
+            
+        }
+
+        else {
+            endTimeInput.setCustomValidity('');
+           
+
+
+        }
+
+    }
+
+
+
+
+
+});
+
+
+
+
 
 
 
@@ -192,7 +290,7 @@ passwordInput.addEventListener('input', function() {
     } else {
         message = 'Great password!';
         this.setCustomValidity('');
-        
+
     }
 
     if (this.validity.valid == true) {
@@ -205,6 +303,10 @@ passwordInput.addEventListener('input', function() {
     passwordTip.innerHTML = message;
 
 });
+
+
+
+
 
 
 secondPasswordInput.addEventListener('input', function() {
@@ -375,25 +477,23 @@ function createNewEventCard(eventInfo) {
 
 var passwordInputs = document.querySelectorAll('input[type=password]');
 
-for (let passwordInput of passwordInputs){
+for (let passwordInput of passwordInputs) {
 
     let passParent = passwordInput.parentNode;
     let passInput = passParent.querySelector('input');
     let checkmark = passParent.querySelector('.checkmark');
-   
-    passwordInput.addEventListener('blur',function(){
 
-       
+    passwordInput.addEventListener('blur', function() {
 
-        if(passInput.validity.valid){
-            checkmark.style.opacity=1;
-        }
 
-        else{
-            checkmark.style.opacity=0;
+
+        if (passInput.validity.valid) {
+            checkmark.style.opacity = 1;
+        } else {
+            checkmark.style.opacity = 0;
 
         }
-    },false);
+    }, false);
 }
 
 
@@ -410,10 +510,10 @@ for (let dataTip of dataTips) {
 
         if (this.validationMessage !== '') {
             labelsSpan.innerHTML = this.validationMessage;
-            checkmark.style.opacity=0;
+            checkmark.style.opacity = 0;
         } else {
             labelsSpan.innerHTML = '';
-            checkmark.style.opacity=1;
+            checkmark.style.opacity = 1;
 
 
         }
@@ -428,24 +528,19 @@ for (let dataTip of dataTips) {
 
 
 guestInput.addEventListener('blur', function() {
-    
+
 
     if (guestListArray.length == 0 && this.value == "") {
 
-        
+
 
         console.log(guestInput.parentNode.querySelector('span:not(.checkmark)'));
         guestInput.parentNode.querySelector('span:not(.checkmark)').innerHTML = 'You need to have at least one guest.';
 
-    } 
-
-    else if (guestListArray.length == 0 && !this.value == ""){
+    } else if (guestListArray.length == 0 && !this.value == "") {
 
         guestInput.parentNode.querySelector('span:not(.checkmark)').innerHTML = 'Please hit the add guest button to add guest.';
-    }
-
-
-    else {
+    } else {
 
         console.log('does not meet conditions');
         guestInput.parentNode.querySelector('span').innerHTML = '';
@@ -490,28 +585,14 @@ guestInput.addEventListener('keydown', function(e) {
 
 
 
-    
-
-  var autocomplete;
-
-    function initAutocomplete(){
-
-  autocomplete = new google.maps.places.Autocomplete(
-      (document.getElementById('locationInput')),
-      {types: ['geocode']});
 
 
-    }
+var autocomplete;
+
+function initAutocomplete() {
+
+    autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById('locationInput')), { types: ['geocode'] });
 
 
-
-
-
-
-document.querySelector('#nameInput').addEventListener('click',function(){
-
-    let box = document.querySelector('.checkmark');
-    box.style.visibility = "visible";
-
-
-},false);
+}

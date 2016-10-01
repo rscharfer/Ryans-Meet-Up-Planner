@@ -168,6 +168,10 @@ span[data-validate-tip] {
     max-width: 273px;
     margin: 0 auto;
     padding-right: 0px; }
+
+    input {
+      width:225px;
+    }
   header {
     right: 0px; } }
 

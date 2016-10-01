@@ -70,6 +70,15 @@ gulp.task('startDevBrowser',function(){
 });
 
 
+gulp.task('startDistBrowser',function(){
+
+	browser.init({
+		server:'./dist',
+		debug:true
+	});
+});
+
+
 gulp.task('babelize',function(){
 	return gulp.src(['./src/ecma6/formatTime.js','./src/ecma6/main.js'])
 	.pipe(babel({
@@ -110,6 +119,35 @@ gulp.task('serve',['startDevBrowser'],function(){
 
 	gulp.watch('./src/sass/**/*.scss', ['unsass','browserUpdate']);
 });
+
+
+gulp.task('cssDistribute',function(){
+
+	gulp.src(['./src/css/vendors/normalize.css','./src/css/vendors/main.css','./src/css/styles.css'])
+	.pipe(concat('styles.css'))
+	.pipe(cleanCSS({compatibility: 'ie8'}))
+	.pipe(gulp.dest('./dist/css'));
+
+});
+
+
+gulp.task('jsDistribute',function(){
+
+	gulp.src(['./src/js/formatTime.js','./src/js/main.js'])
+	.pipe(concat('scripts.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('./dist/js'));
+
+});
+
+
+gulp.task('serve:dist',['startDevBrowser'],function(){
+
+	
+});
+
+
+
 
 
 

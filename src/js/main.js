@@ -108,7 +108,6 @@ createAccountButton.addEventListener('click', function () {
     var loveJob = loveJobInput.value;
     var newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
     localStorage.setItem(name, JSON.stringify(newAccount));
-    console.dir(JSON.parse(localStorage.getItem(name)) instanceof Account);
 }, false);
 
 loveJobInput.addEventListener('input', function () {
@@ -128,6 +127,9 @@ addGuestButton.addEventListener('click', function () {
     guestList.appendChild(newItem);
     formGuestLabel.querySelector('input').value = '';
     guestListArray.push(guestName);
+    var checkmark = formGuestLabel.querySelector('.checkmark');
+    checkmark.style.opacity = 1;
+    formGuestLabel.querySelector('#guestTip').innerHTML = '';
 }, false);
 
 passwordInput.addEventListener('input', function () {
@@ -313,11 +315,8 @@ try {
         var passParent = passwordInput.parentNode;
         var passInput = passParent.querySelector('input');
         var checkmark = passParent.querySelector('.checkmark');
-        console.log(passwordInput);
 
         passwordInput.addEventListener('blur', function () {
-
-            console.log('blur!');
 
             if (passInput.validity.valid) {
                 checkmark.style.opacity = 1;
@@ -400,9 +399,14 @@ guestInput.addEventListener('blur', function () {
 
     if (guestListArray.length == 0 && this.value == "") {
 
-        guestInput.parentNode.querySelector('span').innerHTML = 'You need to have at least one guest.';
+        console.log(guestInput.parentNode.querySelector('span:not(.checkmark)'));
+        guestInput.parentNode.querySelector('span:not(.checkmark)').innerHTML = 'You need to have at least one guest.';
+    } else if (guestListArray.length == 0 && !this.value == "") {
+
+        guestInput.parentNode.querySelector('span:not(.checkmark)').innerHTML = 'Please hit the add guest button to add guest.';
     } else {
 
+        console.log('does not meet conditions');
         guestInput.parentNode.querySelector('span').innerHTML = '';
     }
 }, false);
@@ -430,33 +434,12 @@ guestInput.addEventListener('keydown', function (e) {
     }
 }, false);
 
-console.log('hello');
-
 var autocomplete;
 
 function initAutocomplete() {
 
     autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationInput'), { types: ['geocode'] });
-
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    // autocomplete.addListener('place_changed', fillInAddress);
 }
-
-// function setCheckmarks(){
-
-//     console.log('function has been run');
-
-//     let spans = document.querySelectorAll('.checkmark');
-//     for (let span of spans){
-//         span.innerHTML="hello"
-//         span.style.background = 'url("./img/checkmark.png") repeat 0 0 ';
-//     }
-
-// }
-
-// setCheckmarks();
-
 
 document.querySelector('#nameInput').addEventListener('click', function () {
 

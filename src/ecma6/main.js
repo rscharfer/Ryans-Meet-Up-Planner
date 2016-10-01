@@ -370,6 +370,31 @@ function createNewEventCard(eventInfo) {
 // on blur show validationMessage if it is not empty string
 
 
+var passwordInputs = document.querySelectorAll('input[type=password]');
+
+for (let passwordInput of passwordInputs){
+
+    let passParent = passwordInput.parentNode;
+    let passInput = passParent.querySelector('input');
+    let checkmark = passParent.querySelector('.checkmark');
+    console.log(passwordInput)
+
+    passwordInput.addEventListener('blur',function(){
+
+        console.log('blur!');
+
+        if(passInput.validity.valid){
+            checkmark.style.opacity=1;
+        }
+
+        else{
+            checkmark.style.opacity=0;
+
+        }
+    },false);
+}
+
+
 var dataTips = document.querySelectorAll('[data-validate-tip]');
 
 for (let dataTip of dataTips) {
@@ -383,6 +408,7 @@ for (let dataTip of dataTips) {
 
         if (this.validationMessage !== '') {
             labelsSpan.innerHTML = this.validationMessage;
+            checkmark.style.opacity=0;
         } else {
             labelsSpan.innerHTML = '';
             checkmark.style.opacity=1;

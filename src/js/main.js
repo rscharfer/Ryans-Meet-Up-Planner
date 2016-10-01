@@ -299,7 +299,7 @@ function createNewEventCard(eventInfo) {
 // on blur show validationMessage if it is not empty string
 
 
-var dataTips = document.querySelectorAll('[data-validate-tip]');
+var passwordInputs = document.querySelectorAll('input[type=password]');
 
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
@@ -307,31 +307,27 @@ var _iteratorError = undefined;
 
 try {
     var _loop = function _loop() {
-        var dataTip = _step.value;
+        var passwordInput = _step.value;
 
 
-        var tipLabel = dataTip.parentNode;
-        var labelsInput = tipLabel.querySelector('input');
-        var labelsSpan = tipLabel.querySelector('span:not(.checkmark)');
-        var checkmark = tipLabel.querySelector('.checkmark');
+        var passParent = passwordInput.parentNode;
+        var passInput = passParent.querySelector('input');
+        var checkmark = passParent.querySelector('.checkmark');
+        console.log(passwordInput);
 
-        labelsInput.addEventListener('blur', function () {
+        passwordInput.addEventListener('blur', function () {
 
-            if (this.validationMessage !== '') {
-                labelsSpan.innerHTML = this.validationMessage;
-            } else {
-                labelsSpan.innerHTML = '';
+            console.log('blur!');
+
+            if (passInput.validity.valid) {
                 checkmark.style.opacity = 1;
+            } else {
+                checkmark.style.opacity = 0;
             }
-        }, false);
-
-        labelsInput.addEventListener('input', function () {
-
-            labelsSpan.innerHTML = '';
         }, false);
     };
 
-    for (var _iterator = dataTips[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = passwordInputs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         _loop();
     }
 } catch (err) {
@@ -345,6 +341,57 @@ try {
     } finally {
         if (_didIteratorError) {
             throw _iteratorError;
+        }
+    }
+}
+
+var dataTips = document.querySelectorAll('[data-validate-tip]');
+
+var _iteratorNormalCompletion2 = true;
+var _didIteratorError2 = false;
+var _iteratorError2 = undefined;
+
+try {
+    var _loop2 = function _loop2() {
+        var dataTip = _step2.value;
+
+
+        var tipLabel = dataTip.parentNode;
+        var labelsInput = tipLabel.querySelector('input');
+        var labelsSpan = tipLabel.querySelector('span:not(.checkmark)');
+        var checkmark = tipLabel.querySelector('.checkmark');
+
+        labelsInput.addEventListener('blur', function () {
+
+            if (this.validationMessage !== '') {
+                labelsSpan.innerHTML = this.validationMessage;
+                checkmark.style.opacity = 0;
+            } else {
+                labelsSpan.innerHTML = '';
+                checkmark.style.opacity = 1;
+            }
+        }, false);
+
+        labelsInput.addEventListener('input', function () {
+
+            labelsSpan.innerHTML = '';
+        }, false);
+    };
+
+    for (var _iterator2 = dataTips[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        _loop2();
+    }
+} catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+} finally {
+    try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+        }
+    } finally {
+        if (_didIteratorError2) {
+            throw _iteratorError2;
         }
     }
 }

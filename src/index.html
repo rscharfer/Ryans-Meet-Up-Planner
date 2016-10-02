@@ -39,7 +39,7 @@
             <label for="nameInput">
                 <h5>What is your name?</h5>
                 <br>
-                <input type="text" id="nameInput" placeholder="Hans Down" required autofocus><span class="checkmark"></span>
+                <input class="accountInput" type="text" id="nameInput" placeholder="Hans Down" required autofocus><span class="checkmark"></span>
                 <br><span data-validate-tip id="nameTip"></span>
             </label>
             <br>
@@ -47,7 +47,7 @@
                 <br>
                 <h5>What is your email address?</h5>
                 <br>
-                <input type="email" id="emailInput" placeholder="hansdown@gmail.com" required><span class="checkmark"></span>
+                <input class="accountInput" type="email" id="emailInput" placeholder="hansdown@gmail.com" required><span class="checkmark"></span>
                 <br><span data-validate-tip id="emailTip"></span>
             </label>
             <br>
@@ -55,7 +55,7 @@
                 <br>
                 <h5>Please create a password</h5>
                 <br>
-                <input type="password" id="passwordInput" placeholder="**********" required><span class="checkmark"></span>
+                <input class="accountInput" type="password" id="passwordInput" placeholder="**********" required><span class="checkmark"></span>
                 <br><span id="passwordTip1"></span>
             </label>
             <br>
@@ -63,7 +63,7 @@
                 <br>
                 <h5>Please type the password again</h5>
                 <br>
-                <input type="password" id="secondPasswordInput" placeholder="**********" required><span class="checkmark"></span>
+                <input class="accountInput" type="password" id="secondPasswordInput" placeholder="**********" required><span class="checkmark"></span>
                 <br><span id="passwordTip2"></span>
             </label>
             <br>
@@ -104,7 +104,7 @@
             <label for="eventInput">
                 <h5>What do you want to call the event?</h5>
                 <br>
-                <input type="text" id="eventInput" placeholder="Mary and Ben's Wedding" required autofocus><span class="checkmark"></span>
+                <input class="eventInput" type="text" id="eventInput" placeholder="Mary and Ben's Wedding" required autofocus><span class="checkmark"></span>
                 <br><span data-validate-tip id="eventTip"></span>
             </label>
             <br>
@@ -112,7 +112,7 @@
                 <br>
                 <h5>What type of event is it?</h5>
                 <br>
-                <input list="eventType" id="typeEventInput" placeholder="Wedding" required><span class="checkmark"></span>
+                <input list="eventType" class="eventInput" id="typeEventInput" placeholder="Wedding" required><span class="checkmark"></span>
                 <datalist id="eventType">
                     <option value="Birthday party"></option>
                     <option value="Conference"></option>
@@ -128,7 +128,7 @@
                 <br>
                 <h5>Who is the host of the event?</h5>
                 <br>
-                <input type="text" id="hostInput" placeholder="Mary's Dad" required><span class="checkmark"></span>
+                <input type="text" class="eventInput" id="hostInput" placeholder="Mary's Dad" required><span class="checkmark"></span>
                 <br><span data-validate-tip id="hostTip"></span>
             </label>
             <br>
@@ -136,7 +136,7 @@
                 <br>
                 <h5>When will the event start?</h5>
                 <br>
-                <input type="datetime-local" id="startTimeInput" placeholder="January 5th, 2016 9AM" required><span class="checkmark"></span>
+                <input type="datetime-local" class="eventInput" id="startTimeInput" placeholder="January 5th, 2016 9AM" required><span class="checkmark"></span>
                 <br><span data-validate-tip id="startTip"></span>
             </label>
             <br>
@@ -144,7 +144,7 @@
                 <br>
                 <h5>When will the event end?</h5>
                 <br>
-                <input type="datetime-local" id="endTimeInput" placeholder="January 5th, 2016 11AM" required><span class="checkmark"></span>
+                <input type="datetime-local" class="eventInput" id="endTimeInput" placeholder="January 5th, 2016 11AM" required><span class="checkmark"></span>
                 <br><span data-validate-tip id="endTip"></span>
             </label>
             <br>
@@ -152,7 +152,7 @@
                 <br>
                 <h5>Who do you want to invite?</h5>
                 <br>
-                <input type="text" id="guestInput" placeholder="Aunt Betty"><span class="checkmark"></span>
+                <input type="text" id="guestInput" class="eventInput" placeholder="Aunt Betty"><span class="checkmark"></span>
                 <br><span id="guestTip"></span>
                 <br><span>Current Guest List: </span>
                 <ul></ul>
@@ -163,7 +163,7 @@
                 <br>
                 <h5>Where will the event take place?</h5>
                 <br>
-                <input type="text" placeholder="123 Place St. New York, New York 12343" id="locationInput" autocomplete="street-address" required><span class="checkmark"></span>
+                <input type="text" class="eventInput" placeholder="123 Place St. New York, New York 12343" id="locationInput" autocomplete="street-address" required><span class="checkmark"></span>
                 <br><span data-validate-tip id="locationTip"></span>
             </label>
             <br>

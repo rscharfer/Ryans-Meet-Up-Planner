@@ -122,6 +122,9 @@ showEvents.addEventListener('click', function() {
 
 
 createAccountButton.addEventListener('click', function() {
+
+    if (registerForm.checkValidity()){
+
     let name = nameInput.value;
     let email = emailInput.value;
     let password = passwordInput.value;
@@ -130,7 +133,28 @@ createAccountButton.addEventListener('click', function() {
     let position = positionInput.value;
     let loveJob = loveJobInput.value;
     let newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
-    localStorage.setItem(name, JSON.stringify(newAccount));
+    localStorage.setItem(name, JSON.stringify(newAccount));}
+
+
+    else {
+
+              // loop through the accountInputs
+       let accountInputs = document.querySelectorAll('.accountInput');
+       accountInputs.forEach(function(value){
+        // if the value is valid
+        if(!value.checkValidity()){
+            let parent = value.parentNode;
+            // find the tip span
+            let tip = parent.querySelector('span:not(.checkmark)');
+            // show the validation message
+            tip.innerHTML = value.validationMessage;
+
+        }
+
+       });
+
+
+    }
 
 }, false);
 
@@ -381,6 +405,24 @@ createEventButton.addEventListener('click', function() {
         createNewEventCard(event);
 
 
+    }
+
+    else{   // if the form is not valid
+
+        // loop through the eventInputs
+       let eventInputs = document.querySelectorAll('.eventInput');
+       eventInputs.forEach(function(value){
+        // if the value is valid
+        if(!value.checkValidity()){
+            let parent = value.parentNode;
+            // find the tip span
+            let tip = parent.querySelector('span:not(.checkmark)');
+            // show the validation message
+            tip.innerHTML = value.validationMessage;
+
+        }
+
+       });
     }
 
 

@@ -76,8 +76,8 @@ gulp.task('updateHTML',function(){
 
 	gulp.src('./src/index.html')
 	.pipe(HTMLreplace({
-        'css': './dist/css/styles.css',
-        'js': './dist/js/scripts.min.js'
+        'css': './css/styles.min.css',
+        'js': './js/scripts.min.js'
     }))
 	.pipe(gulp.dest('./dist'));
 });

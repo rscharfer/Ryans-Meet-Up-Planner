@@ -579,8 +579,6 @@ function createNewEventCard(eventInfo) {
 
 
 
-
-
 // when you leave the input area, if the input is not valid, hide the checkmark and write the tip into the tip area
 // if valid, show check mark and no tip
 // also hide tip message on input, if it showing because user tried to submit
@@ -637,8 +635,7 @@ function initAutocomplete() {
 
 
 
-
-
+// prevents default custom validation bubbles
 var forms = document.getElementsByTagName('form');
 for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener('invalid', function(e) {

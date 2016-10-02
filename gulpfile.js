@@ -14,88 +14,13 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify'); 
 var cleanCSS = require('gulp-clean-css');
 var HTMLreplace = require('gulp-html-replace');
+var rename = require('gulp-rename');
  
 
 
 
-// gulp.task('watch',['startBrowser'],function(){
 
-	
-
-// 	gulp.watch('./index.html',['browserUpdate']);
-
-// 	gulp.watch('./src/ecma6/**/*.js',['scripts','browserUpdate']);
-	
-
-
-// 	gulp.watch('./sass/**/*.scss', ['styles','browserUpdate']);
-// });
-
-
-gulp.task('styles',function(){
-	return gulp.src('./src/sass/**/*.scss')
-	.pipe(sass({outputStyle:'compressed'}).on('error',sass.logError))
-	.pipe(gulp.dest('./dist/css'));
-});
-
-
-gulp.task('vendors',function(){
-
-	return gulp.src(['./src/css/vendors/normalize.css','./src/css/vendors/main.css'])
-			.pipe(concat('vendor.css'))
-			.pipe(cleanCSS({compatibility: 'ie8'}))
-			.pipe(gulp.dest('./dist/css'));
-});
-
-// gulp.task('js', () => {
-//     return gulp.src('./ecma6/**/*.js')
-//         .pipe(babel({
-//             presets: ['es2015']
-//         }))
-//         .pipe(gulp.dest('js'));
-// });
-
-gulp.task('browserUpdate',function(){
-
-	browser.reload();
-
-});
-
-gulp.task('startDevBrowser',function(){
-
-	browser.init({
-		server:'./src',
-		debug:true
-	});
-});
-
-
-gulp.task('startDistBrowser',function(){
-
-	browser.init({
-		server:'./dist',
-		debug:true
-	});
-});
-
-
-gulp.task('babelize',function(){
-	return gulp.src(['./src/ecma6/formatTime.js','./src/ecma6/main.js'])
-	.pipe(babel({
-            presets: ['es2015']
-        }))
-	.pipe(gulp.dest('./src/js'));
-});
-
-
-// gulp.task('unsass',function(){
-
-// 	 gulp.src('./src/sass/**/.css')
-// 	.pipe(sass()).on('error',sass.logError)
-// 	.pipe(gulp.dest('./src/css'));
-
-
-// });
+// unsass what I have in my scss folder and place in source css file
 
 gulp.task('unsass',function(){
 
@@ -107,6 +32,95 @@ gulp.task('unsass',function(){
 
 });
 
+// takes all css in source folder, concatenates it, minimizes it, and places it in dist folder
+
+gulp.task('cssDistribute',['unsass'],function(){
+
+	gulp.src(['./src/css/vendors/normalize.css','./src/css/vendors/main.css','./src/css/styles.css'])
+	.pipe(concat('styles.css'))
+	.pipe(cleanCSS({compatibility: 'ie8'}))
+	.pipe(rename('styles.min.css'))
+	.pipe(gulp.dest('./dist/css'));
+
+});
+
+
+// babelize both of the ecma script 6 files and place them in src js folder
+
+gulp.task('babelize',function(){
+	return gulp.src(['./src/ecma6/formatTime.js','./src/ecma6/main.js'])
+	.pipe(babel({
+            presets: ['es2015']
+        }))
+	.pipe(gulp.dest('./src/js'));
+});
+
+
+gulp.task('jsDistribute',['babelize'],function(){
+
+	gulp.src(['./src/js/formatTime.js','./src/js/main.js'])
+	.pipe(concat('scripts.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('./dist/js'));
+
+});
+
+
+
+
+// copy the index file from src to dist, replacing the source files with the dist files
+
+
+gulp.task('updateHTML',function(){
+
+
+	gulp.src('./src/index.html')
+	.pipe(HTMLreplace({
+        'css': './dist/css/styles.css',
+        'js': './dist/js/scripts.min.js'
+    }))
+	.pipe(gulp.dest('./dist'));
+});
+
+
+
+
+// starts dev browser
+
+gulp.task('startDevBrowser',function(){
+
+	browser.init({
+		server:'./src',
+		debug:true
+	});
+});
+
+// starts dist browser
+gulp.task('startDistBrowser',function(){
+
+	browser.init({
+		server:'./dist',
+		debug:true
+	});
+});
+
+
+// updates browser
+
+gulp.task('browserUpdate',function(){
+
+	browser.reload();
+
+});
+
+
+
+
+
+
+
+// watch for changes in index, ecma6 folder, sass folder, update all files
+// in src and distribution folders and reload browser
 
 gulp.task('serve',['startDevBrowser'],function(){
 
@@ -122,42 +136,19 @@ gulp.task('serve',['startDevBrowser'],function(){
 });
 
 
-gulp.task('cssDistribute',['unsass'],function(){
-
-	gulp.src(['./src/css/vendors/normalize.css','./src/css/vendors/main.css','./src/css/styles.css'])
-	.pipe(concat('styles.css'))
-	.pipe(cleanCSS({compatibility: 'ie8'}))
-	.pipe(gulp.dest('./dist/css'));
-
-});
 
 
-gulp.task('jsDistribute',['babelize'],function(){
 
-	gulp.src(['./src/js/formatTime.js','./src/js/main.js'])
-	.pipe(concat('scripts.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('./dist/js'));
-
-});
+// start distribution browser
 
 
-gulp.task('serve:dist',['startDevBrowser'],function(){
+gulp.task('serve:dist',['startDistBrowser'],function(){
 
 	
 });
 
 
-gulp.task('updateHTML',function(){
 
-
-	gulp.src('./src/index.html')
-	.pipe(HTMLreplace({
-        'css': './dist/css/styles.css',
-        'js': './dist/js/scripts.min.js'
-    }))
-	.pipe(gulp.dest('./dist'));
-});
 
 
 

@@ -138,7 +138,7 @@ figure img {
   justify-content: flex-start;
   text-align: center; }
 
-span[data-validate-tip] {
+.notPasswordNotGuestTip {
   color: red; }
 
 #eventsPage {

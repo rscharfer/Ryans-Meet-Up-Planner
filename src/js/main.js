@@ -99,15 +99,33 @@ showEvents.addEventListener('click', function () {
 }, false);
 
 createAccountButton.addEventListener('click', function () {
-    var name = nameInput.value;
-    var email = emailInput.value;
-    var password = passwordInput.value;
-    var birthday = birthdayInput.value;
-    var employer = employerInput.value;
-    var position = positionInput.value;
-    var loveJob = loveJobInput.value;
-    var newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
-    localStorage.setItem(name, JSON.stringify(newAccount));
+
+    if (registerForm.checkValidity()) {
+
+        var name = nameInput.value;
+        var email = emailInput.value;
+        var password = passwordInput.value;
+        var birthday = birthdayInput.value;
+        var employer = employerInput.value;
+        var position = positionInput.value;
+        var loveJob = loveJobInput.value;
+        var newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
+        localStorage.setItem(name, JSON.stringify(newAccount));
+    } else {
+
+        // loop through the accountInputs
+        var accountInputs = document.querySelectorAll('.accountInput');
+        accountInputs.forEach(function (value) {
+            // if the value is valid
+            if (!value.checkValidity()) {
+                var parent = value.parentNode;
+                // find the tip span
+                var tip = parent.querySelector('span:not(.checkmark)');
+                // show the validation message
+                tip.innerHTML = value.validationMessage;
+            }
+        });
+    }
 }, false);
 
 loveJobInput.addEventListener('input', function () {
@@ -282,6 +300,21 @@ createEventButton.addEventListener('click', function () {
         var event = new ProjectEvent(name, type, host, startTime, endTime, guests, location, message);
         localStorage.setItem(name, JSON.stringify(event));
         createNewEventCard(event);
+    } else {
+        // if the form is not valid
+
+        // loop through the eventInputs
+        var eventInputs = document.querySelectorAll('.eventInput');
+        eventInputs.forEach(function (value) {
+            // if the value is valid
+            if (!value.checkValidity()) {
+                var parent = value.parentNode;
+                // find the tip span
+                var tip = parent.querySelector('span:not(.checkmark)');
+                // show the validation message
+                tip.innerHTML = value.validationMessage;
+            }
+        });
     }
 
     // eventInput.value = '';

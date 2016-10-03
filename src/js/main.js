@@ -547,6 +547,7 @@ function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationInput'), { types: ['geocode'] });
 }
 
+// prevents default custom validation bubbles
 var forms = document.getElementsByTagName('form');
 for (var i = 0; i < forms.length; i++) {
     forms[i].addEventListener('invalid', function (e) {

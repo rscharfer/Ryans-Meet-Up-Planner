@@ -1,5 +1,5 @@
 # Meet-Up Event Planner
-A part of Udacity's Senior Web Developer Nanodegree Program
+*a part of Udacity's Senior Web Developer Nanodegree Program*
 
 
 
@@ -19,6 +19,7 @@ This is the first project from the Udacity's Senior Web Developer Nanodegree pro
 Additional features the app has, but were not required:
 
 * events created by the user are saved to local storage, which means they will still be there when he closes his browser and opens it again.
+* [Google Maps API](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform)  used for place autocomplete
 
 
 
@@ -26,7 +27,7 @@ Additional features the app has, but were not required:
 ### The easiest way to view the app
 
 * Clone the repository to your desktop
-* Open the index.html in the root of the repository with your favorite browser
+* Open the index.html in either `src` or `dist` folder
 
 
 
@@ -41,15 +42,25 @@ $ npm install
 After all of the modules from the package.json file have installed, run the following command: 
 
 ```
-$ gulp watch
+$ gulp serve
 ```
-This will allow you to live edit the following files and immediately see the results on any device in your wireless network:
+This will allow you to live edit the following files in the `src` folder and immediately see the results on any device in your wireless network:
 
 * index.html
 * any file in the `ecma6` folder
 * any file in the `sass` folder
 
-Additionally, you can safely write with ECMA Script 6 and SASS, and your code will be __automatically__ be converted into ECMA Script 5 and CSS.
+Additionally, you can safely write with ECMA Script 6 and SASS, and your code will be __automatically__ be converted into ECMA Script 5 and vanilla CSS.
+
+
+If you would like to take a look at the distributed version of the app, run the command:
+
+```
+$ gulp serve:dist
+```
+
+
+In order to keep the app in the `src` folder in sync with the app in the `dist` folder, manually modify only files in the `src`file.  If a local server is not running by using the `gulp serve` command, you will have to use `gulp update` to update the files in the `dist` folder after making changes to the files in the `src` file.
 
 
 

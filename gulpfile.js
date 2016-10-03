@@ -148,6 +148,15 @@ gulp.task('serve:dist',['startDistBrowser'],function(){
 });
 
 
+// make sure any changes performed while gulp was not watching update dist files too
+
+
+gulp.task('update',['updateHTML','jsDistribute','cssDistribute'],function(){
+
+
+});
+
+
 
 
 

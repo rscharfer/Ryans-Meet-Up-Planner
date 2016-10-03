@@ -104,6 +104,7 @@ showCreateEventForm.addEventListener('click', function() {
     image.style.display = 'none';
     eventsPage.style.display = 'none';
     registerForm.style.display = 'none';
+    eventInput.focus();
 }, false);
 
 
@@ -112,6 +113,7 @@ showRegister.addEventListener('click', function() {
     image.style.display = 'none';
     eventsPage.style.display = 'none';
     registerForm.style.display = 'block';
+    nameInput.focus();
 }, false);
 
 

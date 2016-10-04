@@ -303,7 +303,8 @@ createAccountButton.addEventListener('click', function() {
 // set validation message for both start and end input
 startTimeInput.addEventListener('blur', function() {
 
-
+    console.log(typeof this.value);
+    console.log(this.value);
     let inputValue = this.value;
 
 

@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 /* eslint no-console: 0 */
 /* eslint indent: 0 */
 /* eslint no-mixed-spaces-and-tabs: 0 */
@@ -274,6 +276,8 @@ createAccountButton.addEventListener('click', function () {
 // set validation message for both start and end input
 startTimeInput.addEventListener('blur', function () {
 
+    console.log(_typeof(this.value));
+    console.log(this.value);
     var inputValue = this.value;
 
     if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(inputValue)) {

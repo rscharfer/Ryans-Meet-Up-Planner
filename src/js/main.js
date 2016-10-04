@@ -223,6 +223,15 @@ loveJobInput.addEventListener('input', function () {
 // when user clicks create account button, check to see if all of the values in the form are valid
 // if so, save a new account object to local storage. Otherwise, mark the invalid fields with a message.
 
+
+function preventDefault(e) {
+
+    e.preventDefault();
+}
+
+registerForm.addEventListener('submit', preventDefault);
+createEventForm.addEventListener('submit', preventDefault);
+
 createAccountButton.addEventListener('click', function () {
 
     if (registerForm.checkValidity()) {
@@ -236,7 +245,11 @@ createAccountButton.addEventListener('click', function () {
         var loveJob = loveJobInput.value;
         var newAccount = new Account(name, email, password, birthday, employer, position, loveJob);
         localStorage.setItem(name, JSON.stringify(newAccount));
+        registerForm.removeEventListener('submit', preventDefault);
+        registerForm.submit();
+        console.log('valid!');
     } else {
+        console.log('invalid!');
 
         // loop through the accountInputs
         var accountInputs = document.querySelectorAll('.accountInput');
@@ -403,6 +416,8 @@ createEventButton.addEventListener('click', function () {
         var event = new ProjectEvent(name, type, host, startTime, endTime, guests, location, message);
         localStorage.setItem(name, JSON.stringify(event));
         createNewEventCard(event);
+        createEventForm.removeEventListener('submit', preventDefault);
+        createEventForm.submit();
     } else {
         // if the form is not valid
 
